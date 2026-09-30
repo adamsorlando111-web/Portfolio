@@ -1,6 +1,6 @@
 # Portfolio website: working notes
 
-Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxford Brookes, moving into film set design / art department.
+Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxford Brookes. The portfolio is for architecture practice AND film/TV art departments, so copy should present both, not film only.
 
 ## Live site
 - https://adamsorlando111-web.github.io/Portfolio/ (capital P matters; lowercase gives 404)
