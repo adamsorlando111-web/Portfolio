@@ -490,7 +490,16 @@ html.has-cur,html.has-cur *{cursor:none!important}
 /* best work: when there are five tiles, the last two share the row */
 @media (min-width:861px){.best:not(:has(.t-c)) .t-e,.best:not(:has(.t-c)) .t-f{grid-column:span 3}.best:not(:has(.t-c)) .t-e img,.best:not(:has(.t-c)) .t-f img{aspect-ratio:21/9}}
 
+/* rain over the opening page, landing on the name */
+.hx-rain{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hx-inner{position:relative;z-index:0}
+@media (prefers-reduced-motion:reduce){.hx-rain{display:none}}
 
+/* name morph: the big title travels into the header as you scroll */
+.hx-title{transform-origin:0 0;will-change:transform}
+.hx-title .ln2{will-change:transform}
+.top .name{transition:opacity .35s}
+.top .name.away{opacity:0;pointer-events:none}
 
 /* private preview badge: only shows away from the public github.io site */
 .wip-tag{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:60;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--amber);padding:6px 10px;pointer-events:none;text-shadow:none}
@@ -524,6 +533,7 @@ html.has-cur,html.has-cur *{cursor:none!important}
   <section class="hx" aria-label="Introduction">
     <div class="hx-media"><img src="img/so-aerial.jpg" alt="Misty aerial of Set One Studios among estate housing, a train passing below" data-par="0.18"></div>
     <div class="hx-fog" aria-hidden="true"><i></i><i></i><i></i></div>
+    <canvas class="hx-rain" aria-hidden="true"></canvas>
     <div class="wrap hx-inner">
       <p class="hx-kicker mono" data-type>Portfolio / Architecture &amp; film</p>
       <h1 class="hx-title" data-split><span class="ln">Orlando</span> <span class="ln ln2">Adams</span></h1>
@@ -592,15 +602,6 @@ html.has-cur,html.has-cur *{cursor:none!important}
       <p class="lede part-lede">Oldest to newest. Open a year to see its projects.</p>
     </section>
     <div class="years">
-      <details class="year" id="alevels">
-        <summary><span class="y-title"><b>A levels</b><span>Wymondham College</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
-        <div class="y-body">
-          <article class="project">
-            <div class="shead"><div><p class="eyebrow">Extended Project Qualification</p><h2>Floating home, Prek Toal</h2></div><p class="lede">A floating home designed and rendered for Prek Toal, Cambodia.</p></div>
-            <p class="soon mono">Images being added</p>
-          </article>
-        </div>
-      </details>
 
       <details class="year" id="year2" open>
         <summary><span class="y-title"><b>Year 2</b><span>Unit L: Repair, Exchange, Production</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
@@ -894,7 +895,7 @@ html.has-cur,html.has-cur *{cursor:none!important}
 
   /* ---------- routing with a curtain between pages ---------- */
   var views={home:1,architecture:1,photography:1,written:1};
-  var sub={"set-one":"year2","common-ground":"year2","light":"year2","offset":"year2","capoeira":"year1","graduation-station":"year1","alevels":"alevels","year1":"year1","year2":"year2","year3":"year3","contact":"home","intro":"home","kochi":"photography","elsewhere":"photography"};
+  var sub={"set-one":"year2","common-ground":"year2","light":"year2","offset":"year2","capoeira":"year1","graduation-station":"year1","alevels":"alevels","terrarium":"alevels","year1":"year1","year2":"year2","year3":"year3","contact":"home","intro":"home","kochi":"photography","elsewhere":"photography"};
   var current=null, curtain=document.getElementById('curtain');
   function resolve(h){ return views[h]?h:(sub[h]?(views[sub[h]]?sub[h]:'architecture'):'home'); }
   function show(h,v,imm){
@@ -1005,6 +1006,137 @@ html.has-cur,html.has-cur *{cursor:none!important}
   document.addEventListener('contextmenu',function(e){ if(e.target.closest('img,figure,.tile,.ch-card,.lb')) e.preventDefault(); });
   document.addEventListener('dragstart',function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
   document.querySelectorAll('img').forEach(function(i){ i.setAttribute('draggable','false'); });
+})();
+</script>
+
+<script>
+/* Rain: drops fall across the hero and splash on the letters of the name,
+   on the hairline above the subtitle and at the foot of the image. */
+(function(){
+  var hero=document.querySelector('.hx'), cv=document.querySelector('.hx-rain');
+  if(!hero||!cv||!cv.getContext||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ctx=cv.getContext('2d'), W=0,H=0,dpr=1, map=null, drops=[], bits=[], WIND=.16, last=performance.now();
+
+  function size(){
+    var r=hero.getBoundingClientRect(); W=Math.max(1,Math.round(r.width)); H=Math.max(1,Math.round(r.height));
+    dpr=Math.min(2,window.devicePixelRatio||1); cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.max(60,Math.min(230,Math.round(W*H/8500)));
+    while(drops.length<n) drops.push(spawn({},true)); drops.length=n;
+    ground(); setTimeout(letters,50);
+  }
+  function ground(){
+    map=new Float32Array(W); for(var x=0;x<W;x++) map[x]=H-2;
+    var hr=hero.getBoundingClientRect(), foot=hero.querySelector('.hx-foot');
+    if(foot){ var f=foot.getBoundingClientRect(), y=f.top-hr.top;
+      for(var x2=Math.max(0,Math.floor(f.left-hr.left));x2<Math.min(W,f.right-hr.left);x2++) map[x2]=Math.min(map[x2],y); }
+  }
+  /* draw the name off-screen, then read the top edge of every letter */
+  function letters(){
+    var h1=hero.querySelector('.hx-title'); if(!h1) return;
+    var hr=hero.getBoundingClientRect(), tr=h1.getBoundingClientRect();
+    var oc=document.createElement('canvas'); oc.width=W; oc.height=H; var o=oc.getContext('2d'); o.fillStyle='#000';
+    h1.querySelectorAll('.wi').forEach(function(wi){
+      var cs=getComputedStyle(wi), fs=parseFloat(cs.fontSize), ls=parseFloat(cs.letterSpacing)||0;
+      o.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+      var r=wi.getBoundingClientRect(), m=o.measureText(wi.textContent);
+      var asc=m.fontBoundingBoxAscent||fs*.8, desc=m.fontBoundingBoxDescent||fs*.2;
+      var base=r.top-hr.top+(r.height-(asc+desc))/2+asc, x=r.left-hr.left;
+      Array.prototype.forEach.call(wi.textContent,function(ch){ o.fillText(ch,x,base); x+=o.measureText(ch).width+ls; });
+    });
+    var y0=Math.max(0,Math.floor(tr.top-hr.top-20)), y1=Math.min(H,Math.ceil(tr.bottom-hr.top+20));
+    if(y1<=y0) return;
+    var d=o.getImageData(0,y0,W,y1-y0).data, rows=y1-y0;
+    for(var x=0;x<W;x++){ for(var y=0;y<rows;y++){ if(d[(y*W+x)*4+3]>120){ map[x]=Math.min(map[x],y0+y); break; } } }
+  }
+  function spawn(d,anywhere){
+    d.z=.35+Math.random()*.65;                 /* depth: near drops are longer, faster, brighter */
+    d.len=10+d.z*24; d.v=700+d.z*900;
+    d.x=Math.random()*(W+H*WIND)-H*WIND*.5; d.y=anywhere?Math.random()*H:-d.len-Math.random()*120;
+    d.a=.09+d.z*.26; return d;
+  }
+  function splash(x,y,z,onLetter){
+    var n=onLetter?3+(Math.random()*3|0):1+(Math.random()*3|0);
+    for(var i=0;i<n;i++) bits.push({x:x,y:y-1,vx:(Math.random()-.4)*90*z,vy:-(60+Math.random()*140)*z,t:0,life:.22+Math.random()*.22,a:onLetter?.55:.3});
+  }
+  function frame(now){
+    requestAnimationFrame(frame);
+    var dt=Math.min(.05,(now-last)/1000); last=now;
+    if(document.hidden) return;
+    var hr=hero.getBoundingClientRect(); if(hr.bottom<0||hero.closest('[hidden]')) return;
+    ctx.clearRect(0,0,W,H);
+    ctx.lineCap='round';
+    for(var i=0;i<drops.length;i++){
+      var d=drops[i]; d.y+=d.v*dt; d.x+=d.v*WIND*dt;
+      var xi=d.x|0;
+      if(xi>=0&&xi<W){
+        var stop=(d.z>.62&&window.scrollY<20)?map[xi]:H-2;           /* far drops fall behind the name */
+        if(d.y>=stop){ if(d.z>.5) splash(d.x,stop,d.z,stop<H-4); spawn(d,false); continue; }
+      } else if(d.y>H){ spawn(d,false); continue; }
+      ctx.strokeStyle='rgba(214,222,228,'+d.a.toFixed(3)+')'; ctx.lineWidth=d.z>.8?1.2:1;
+      ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d.x-d.len*WIND,d.y-d.len); ctx.stroke();
+    }
+    for(var j=bits.length-1;j>=0;j--){
+      var b=bits[j]; b.t+=dt; if(b.t>b.life){ bits.splice(j,1); continue; }
+      b.vy+=1100*dt; b.x+=b.vx*dt; b.y+=b.vy*dt;
+      ctx.fillStyle='rgba(226,232,236,'+(b.a*(1-b.t/b.life)).toFixed(3)+')';
+      ctx.fillRect(b.x,b.y,1.3,1.3);
+    }
+  }
+  size();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(function(){ground();letters();},2600); });
+  setTimeout(function(){ground();letters();},3200);
+  var rt; addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(size,250); });
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+/* Name morph: as the page scrolls, "Orlando / Adams" closes up onto one line,
+   shrinks and travels into the header, where the small name takes over. */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var h1=document.querySelector('.hx-title'), hero=document.querySelector('.hx'), name=document.querySelector('.top .name');
+  if(!h1||!hero||!name) return;
+  var l1=h1.querySelector('.ln'), l2=h1.querySelector('.ln2'), kick=hero.querySelector('.hx-kicker'), foot=hero.querySelector('.hx-foot');
+  var M=null, lastY=-1, lastW=0;
+  function box(el){ var w=el.querySelectorAll('.w'); var a=w[0].getBoundingClientRect(), b=w[w.length-1].getBoundingClientRect(); return {left:a.left,top:a.top,right:b.right,bottom:b.bottom}; }
+  function measure(){
+    h1.style.transform=''; l2.style.transform='';
+    var y=window.scrollY, r1=box(l1), r2=box(l2), nr=name.getBoundingClientRect();
+    var fs=parseFloat(getComputedStyle(h1).fontSize), nfs=parseFloat(getComputedStyle(name).fontSize);
+    var pad=.09*fs;                                   /* the word masks add this much on each side */
+    M={
+      x:r1.left+pad, y:r1.top+y,                      /* where the name sits at the top of the page */
+      tx:nr.left, ty:nr.top+(nr.height-nfs*1.02)/2,   /* where it ends, over the header name */
+      s:nfs/fs,
+      dx:(r1.right-pad)+fs*.24-(r2.left+pad),         /* close "Adams" up beside "Orlando" */
+      dy:r1.top-r2.top,
+      end:Math.max(200,hero.offsetHeight*.55)
+    };
+    window.__morphEnd=M.end; lastY=-1;
+  }
+  function ease(t){ return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; }
+  function frame(){
+    requestAnimationFrame(frame);
+    var home=!document.getElementById('v-home').hidden;
+    if(!home){ name.classList.remove('away'); return; }
+    if(!M||innerWidth!==lastW){ lastW=innerWidth; measure(); }
+    var y=window.scrollY; if(y===lastY) return; lastY=y;
+    var p=Math.min(1,Math.max(0,y/M.end)), e=ease(p);
+    var sc=1+(M.s-1)*e;
+    var X=M.x+(M.tx-M.x)*e;
+    /* untransformed, the name would sit at (M.x, M.y - scroll); move it to the eased target */
+    var desiredY=(M.y)+(M.ty-M.y)*e, curY=M.y-y;
+    h1.style.transform='translate3d('+(X-M.x).toFixed(1)+'px,'+(desiredY-curY).toFixed(1)+'px,0) scale('+sc.toFixed(4)+')';
+    /* "Adams" slides right first, then rises, so the two words never collide */
+    var ex=ease(Math.min(1,p/.55)), ey=ease(Math.min(1,Math.max(0,(p-.25)/.75)));
+    l2.style.transform='translate3d('+(M.dx*ex).toFixed(1)+'px,'+(M.dy*ey).toFixed(1)+'px,0)';
+    h1.style.opacity=p>=1?0:1;
+    name.classList.toggle('away',p<1);
+    var f=Math.max(0,1-p*2.2); if(kick) kick.style.opacity=f; if(foot) foot.style.opacity=f;
+  }
+  addEventListener('resize',function(){ M=null; });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ M=null; });
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>

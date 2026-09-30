@@ -37,7 +37,7 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 
 ## Structure
 - Home: portrait, intro, at-a-glance strip, 6 best-work tiles, Request CV (WhatsApp button + copyable phone/email).
-- Architecture (public title "Selected work"): collapsible `<details>` per year: A levels (EPQ floating home, Prek Toal, placeholder), Year 1 (WIP only: Capoeira gym with images; Graduation Station placeholder), Year 2 (Offset Studios placeholder, Common Ground, Set One Studios, Light studies; open by default), Year 3 (in progress).
+- Architecture (public title "Selected work"): collapsible `<details>` per year: A levels (WIP only: EPQ floating home, Prek Toal; Terrarium House, outdoor classroom for Wymondham College; both placeholders), Year 1 (WIP only: Capoeira gym with images; Graduation Station placeholder), Year 2 (Offset Studios placeholder, Common Ground, Set One Studios, Light studies; open by default), Year 3 (in progress).
 - Photography: chapter index, Chapter 01 Kochi, India (12 to 19 Dec 2025, grouped by capture day, story placeholder), Unsorted (2 photos, locations unknown). Oxford, Norfolk, Cambridge chapters to come.
 - Written (WIP only): dissertation card (working title placeholder; topic: post-apocalyptic TV and architecture, Station Eleven and The Last of Us).
 
@@ -52,7 +52,8 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 - Markers in the master: `<!--wip:start-->...<!--wip:end-->` and `/*wip:start*/.../*wip:end*/` are WIP only; `<!--pub:start ... pub:end-->` is public only; `<!--body-->` separates head from body.
 - Publish WIP: Artifact publish `wip.html` with `url` = the WIP link and `files` = every `img/*` plus `js/lenis.min.js`.
 - Go public (only when Lando says "publish" / "make it live"): commit the built `index.html` (+ any new images) to `main` and push. Never commit `master.html` or `wip.html`.
-- WIP-only right now: Year 1 (Capoeira, Graduation Station) and the Capoeira home tile, the Written page, rain on the hero (canvas, splashes on the letters of the name), and the name morph (big title closes onto one line and flies into the header on scroll).
+- WIP-only right now: A levels (EPQ floating home, Prek Toal; Terrarium House outdoor classroom for Wymondham College), Year 1 (Capoeira, Graduation Station) and the Capoeira home tile, and the Written page.
+- Public since 30 Sept: rain on the hero (canvas, splashes on the letters of the name) and the name morph (big title closes onto one line and flies into the header on scroll).
 
 ## Workflow for updates
 1. Lando drops images into his Portfolio folder (linked computer) or sends text in chat.
