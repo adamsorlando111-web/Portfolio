@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Orlando Adams: architecture, photography and writing. Final-year architecture student at Oxford Brookes moving into film set design.">
+<style>[hidden]{display:none!important}</style>
+<title>Orlando Adams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --ink:#0F1113;
+  --panel:#181B1E;
+  --line:#2A2E33;
+  --text:#E8E4DC;
+  --mute:#8E949A;
+  --amber:#E3A34A;
+  --paper:#ECE8E0;
+  --paper-ink:#1D1F21;
+  --paper-mute:#6B6A66;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:clamp(16px,4vw,56px);
+  --max:1320px;
+}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font:400 16px/1.6 var(--body);margin:0;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(15,17,19,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.name{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.top nav{display:flex;gap:clamp(12px,2.4vw,28px);flex-wrap:wrap}
+.top nav a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none}
+.top nav a:hover{color:var(--amber)}
+
+/* frames: letterboxed stills */
+.frame{margin:0;position:relative;background:#000;cursor:zoom-in}
+.frame img{width:100%;aspect-ratio:2.39/1;object-fit:cover}
+.frame.tall img{aspect-ratio:3/2}
+.frame.sq img{aspect-ratio:1/1}
+.frame.por img{aspect-ratio:3/4}
+.frame figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0 0;background:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.frame figcaption b{color:var(--text);font-weight:500}
+
+/* hero */
+.hero{padding-block:clamp(28px,5vw,64px) 0}
+.hero .frame img{aspect-ratio:2.39/1}
+.hero-text{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;padding-block:clamp(28px,5vw,56px)}
+.hero h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,10vw,148px);line-height:.86;letter-spacing:.005em;margin:0;text-wrap:balance}
+.hero h1 span{color:var(--amber)}
+.hero p{margin:0;max-width:44ch;color:var(--text);font-size:17px}
+.hero p + p{margin-top:14px;color:var(--mute);font-size:15px}
+
+/* sections */
+section{padding-block:clamp(56px,8vw,112px)}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(20px,5vw,80px);align-items:end;margin-bottom:clamp(28px,4vw,48px);border-top:1px solid var(--line);padding-top:20px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0 0 10px}
+h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,6.4vw,92px);line-height:.9;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(26px,3vw,38px);line-height:1;margin:0 0 12px;letter-spacing:.01em}
+.lede{margin:0;max-width:58ch;color:var(--text)}
+.lede + .lede{margin-top:12px}
+.muted{color:var(--mute)}
+
+.grid{display:grid;align-items:start;gap:clamp(18px,2.4vw,32px)}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.split.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
+.note p{margin:0 0 12px;max-width:52ch}
+.stack{display:grid;gap:clamp(18px,2.4vw,32px)}
+.spacer{height:clamp(28px,4vw,56px)}
+
+/* stats strip: real project facts */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-block:clamp(28px,4vw,48px)}
+.facts div{padding:16px 16px 16px 0}
+.facts div + div{padding-left:16px;border-left:1px solid var(--line)}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.facts dd{margin:0;overflow-wrap:anywhere;hyphens:auto;font-family:var(--display);font-weight:600;font-size:clamp(20px,2.2vw,28px);text-transform:uppercase;line-height:1.05}
+
+/* drawing plates sit on white like a print */
+.plate{margin:0;background:#fff;padding:clamp(8px,1.4vw,18px);cursor:zoom-in}
+.plate img{width:100%}
+.plate-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.plate-cap b{color:var(--text);font-weight:500}
+
+/* hand drawn: the paper band */
+.paper{background:var(--paper);color:var(--paper-ink)}
+.paper .shead{border-top-color:#CFCAC0}
+.paper .eyebrow{color:#9A5B14}
+.paper .lede{color:var(--paper-ink)}
+.paper .plate{background:transparent;padding:0;box-shadow:0 1px 0 #CFCAC0}
+.paper .plate-cap{color:var(--paper-mute)}
+.paper .plate-cap b{color:var(--paper-ink)}
+
+/* model contact sheet */
+.models{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;background:#000;padding:6px}
+.models figure{margin:0;cursor:zoom-in;overflow:hidden}
+.models img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s ease}
+.models figure:hover img{transform:scale(1.04)}
+.models .wide{grid-column:span 2}
+.models .wide img{aspect-ratio:2/1}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(44px,8vw,120px)}
+.cline{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
+.addr{font-family:var(--mono);font-size:clamp(15px,2vw,20px);color:var(--text);user-select:all;word-break:break-all}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--amber);border:1px solid var(--amber);padding:10px 14px;cursor:pointer}
+.btn:hover{background:var(--amber);color:var(--ink)}
+footer{padding-block:28px;border-top:1px solid var(--line);color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(6,7,8,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 56px) 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.lb[hidden]{display:none}
+.lb img{max-height:100%;max-width:100%;object-fit:contain;flex:1 1 auto;min-height:0}
+.lb p{margin:12px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
+.lb button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:16px}
+
+
+/* parts + journey */
+.part{padding-block:clamp(72px,10vw,140px) clamp(24px,4vw,48px)}
+.part-title{font-size:clamp(44px,11.5vw,168px);line-height:.82;overflow-wrap:anywhere}
+.part-lede{margin-top:20px;max-width:60ch}
+.journey{list-style:none;margin:clamp(36px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;border-top:1px solid var(--line)}
+.journey li a{display:grid;gap:4px;padding:20px 12px 0 0;text-decoration:none;min-height:120px;align-content:start}
+.journey .dot{display:block;width:var(--s);height:var(--s);background:var(--amber);margin-bottom:10px}
+.journey .next .dot{background:transparent;border:1px dashed var(--mute)}
+.journey .j-n{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.1em}
+.journey .j-t{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.2vw,30px);text-transform:uppercase;line-height:1}
+.journey .j-y{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.journey a:hover .j-t{color:var(--amber)}
+.plate.dark{background:#000}
+.plate .plate-cap{color:#6B6A66}
+.plate .plate-cap b{color:#1D1F21}
+.plate.dark .plate-cap{color:var(--mute)}
+.plate.dark .plate-cap b{color:var(--text)}
+.cutouts .plate{display:flex;align-items:center;justify-content:center}
+.y3{border-top:1px dashed var(--line)}
+.photos{columns:3 280px;column-gap:clamp(12px,1.6vw,20px);margin-top:clamp(32px,5vw,56px)}
+.photos figure{margin:0 0 clamp(12px,1.6vw,20px);break-inside:avoid;cursor:zoom-in;background:#000}
+.photos img{width:100%}
+.essays{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:24px;margin-top:clamp(32px,5vw,56px)}
+.essay{border-top:2px solid var(--amber);padding-top:18px}
+.essay h3{font-size:clamp(32px,4vw,52px)}
+.essay p{max-width:52ch;margin:0 0 12px}
+@media (max-width:860px){.journey{grid-template-columns:minmax(0,1fr)}.journey li a{min-height:0;grid-template-columns:40px 36px 1fr;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}.journey .dot{margin:0}.journey .j-y{grid-column:3}}
+
+@media (max-width:860px){
+  .hero-text,.shead,.split,.split.rev{grid-template-columns:minmax(0,1fr)}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts div:nth-child(3){padding-left:0;border-left:0}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .models{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .facts div,.facts div + div{padding-left:0;border-left:0}
+  .facts div + div{border-top:1px solid var(--line)}
+  h2{overflow-wrap:anywhere}
+  .g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}
+  .frame img{aspect-ratio:16/9}
+  .hero .frame img{aspect-ratio:4/3}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.models img{transition:none}}
+
+/* views */
+.view{display:block}
+.view[hidden]{display:none}
+.top nav a[aria-current="page"]{color:var(--text)}
+.top nav a[aria-current="page"]::after{content:"";display:block;height:2px;background:var(--amber);margin-top:4px}
+
+/* home */
+.intro{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end;padding-block:clamp(36px,6vw,80px) clamp(28px,4vw,48px)}
+.portrait{margin:0;background:#E9E9E7}
+.portrait img{width:100%;aspect-ratio:357/373;object-fit:cover;filter:grayscale(.15)}
+.intro h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(56px,9vw,132px);line-height:.85;margin:0 0 18px;overflow-wrap:anywhere}
+.intro h1 span{display:block;color:var(--amber);font-size:.38em;line-height:1.1;letter-spacing:.02em}
+.intro p{margin:0 0 12px;max-width:56ch}
+.glance{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0}
+.glance div{padding:16px 16px 16px 0}
+.glance div + div{padding-left:16px;border-left:1px solid var(--line)}
+.glance dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.glance dd{margin:0;font-size:15px}
+.best-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin:clamp(48px,7vw,96px) 0 clamp(20px,3vw,32px)}
+.best-head h2{font-size:clamp(40px,6vw,84px)}
+.best{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+.tile{position:relative;display:block;text-decoration:none;background:#000;overflow:hidden}
+.tile img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;transition:transform .6s ease,opacity .3s}
+.tile:hover img{transform:scale(1.03);opacity:.85}
+.tile .t-cap{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.78));display:flex;justify-content:space-between;gap:8px;align-items:end}
+.tile .t-cap b{font-family:var(--display);font-weight:600;font-size:clamp(20px,2vw,28px);text-transform:uppercase;line-height:1;color:#fff}
+.tile .t-cap span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#D6D2CA}
+.t-a{grid-column:span 4;grid-row:span 2}.t-a img{aspect-ratio:auto}
+.t-b,.t-c{grid-column:span 2}
+.t-d,.t-e,.t-f{grid-column:span 2}
+.contact-strip{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-block:clamp(36px,5vw,56px);border-top:1px solid var(--line);margin-top:clamp(48px,7vw,96px)}
+
+/* architecture: years */
+.years{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
+.year{border-bottom:1px solid var(--line)}
+.year > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding-block:clamp(18px,2.4vw,28px)}
+.year > summary::-webkit-details-marker{display:none}
+.y-title{display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);flex-wrap:wrap}
+.y-title b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(36px,5.4vw,76px);line-height:.9}
+.y-title span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.y-toggle{width:44px;height:44px;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:22px;color:var(--amber);transition:transform .25s}
+.year[open] .y-toggle{transform:rotate(45deg)}
+.year > summary:hover b{color:var(--amber)}
+.y-body{padding-bottom:clamp(40px,6vw,80px);display:grid;gap:clamp(48px,7vw,96px)}
+.project .shead{border-top:0;padding-top:0}
+.project h2{font-size:clamp(34px,4.8vw,68px)}
+.view .part-title{font-size:clamp(44px,8vw,120px)}
+.view .part{padding-top:clamp(40px,6vw,80px)}
+.soon{color:var(--mute);border:1px dashed var(--line);padding:18px;margin:0}
+@media (max-width:860px){
+  .intro{grid-template-columns:minmax(0,1fr)}
+  .portrait{max-width:240px}
+  .glance{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .glance div:nth-child(3){padding-left:0;border-left:0}
+  .glance div:nth-child(n+3){border-top:1px solid var(--line)}
+  .best{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .t-a{grid-column:span 2;grid-row:auto}.t-a img{aspect-ratio:3/2}
+  .t-b,.t-c,.t-d,.t-e,.t-f{grid-column:span 1}
+}
+@media (max-width:520px){
+  .glance{grid-template-columns:minmax(0,1fr)}
+  .glance div,.glance div + div{padding-left:0;border-left:0}
+  .glance div + div{border-top:1px solid var(--line)}
+  .best{grid-template-columns:minmax(0,1fr)}
+  .t-a,.t-b,.t-c,.t-d,.t-e,.t-f{grid-column:auto}
+}
+@media (prefers-reduced-motion:reduce){.tile img,.y-toggle{transition:none}}
+
+/* type system: Neue Haas style grotesk + typewriter notes */
+:root{
+  --display:"Inter Tight","Neue Haas Grotesk Display Pro","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter Tight","Neue Haas Grotesk Text Pro","Helvetica Neue",Arial,sans-serif;
+  --mono:"Courier Prime","Courier New",Courier,monospace;
+}
+body{font-weight:400;letter-spacing:-.005em}
+h1,h2,h3,.name,.y-title b,.tile .t-cap b,.facts dd,.part-title,.intro h1{text-transform:none;letter-spacing:-.04em;font-weight:500}
+.name{font-size:20px;letter-spacing:-.02em}
+h2{font-size:clamp(34px,5vw,72px);line-height:.95}
+.view .part-title{font-size:clamp(44px,7.5vw,112px);line-height:.92}
+.intro h1{font-size:clamp(48px,7.4vw,108px);line-height:.9}
+.intro h1 span{font-family:var(--mono);font-weight:400;letter-spacing:0;font-size:clamp(15px,1.4vw,19px);margin-top:14px;text-transform:none}
+.y-title b{font-size:clamp(32px,4.6vw,64px)}
+.tile .t-cap b{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.02em}
+.facts dd{font-size:clamp(18px,1.9vw,24px);letter-spacing:-.02em}
+.mono,.eyebrow,.plate-cap,.frame figcaption,.top nav a,.glance dt,.facts dt,.btn,.soon,.y-title span,.tile .t-cap span{font-family:var(--mono);letter-spacing:.02em}
+.eyebrow,.plate-cap,.frame figcaption,.top nav a,.glance dt,.facts dt,.btn,.y-title span,.tile .t-cap span{font-size:13px}
+
+/* atmosphere: fine film grain over everything */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* portrait */
+.portrait{background:#fff}
+.portrait img{aspect-ratio:2/3;filter:none}
+
+/* contact + CV */
+.contact-block{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--line);margin-top:clamp(48px,7vw,96px)}
+.contact-block h2{margin-bottom:14px}
+.clist{display:grid;gap:0;margin:0;border-top:1px solid var(--line)}
+.clist div{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:12px;align-items:center;padding-block:14px;border-bottom:1px solid var(--line)}
+.clist dt{font-family:var(--mono);font-size:13px;color:var(--mute)}
+.clist dd{margin:0;font-size:clamp(16px,1.6vw,20px);user-select:all;overflow-wrap:anywhere}
+.btn.solid{background:var(--amber);color:var(--ink);text-decoration:none;display:inline-block}
+.btn.solid:hover{background:transparent;color:var(--amber)}
+.cv-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.cv-actions a{text-decoration:none}
+
+/* photo chapters */
+.chapters-index{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px;margin-top:clamp(28px,4vw,48px)}
+.ch-card{display:block;text-decoration:none;background:#000;position:relative}
+.ch-card img{width:100%;aspect-ratio:4/5;object-fit:cover;opacity:.9}
+.ch-card .c{position:absolute;inset:auto 0 0 0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+.ch-card b{display:block;font-size:24px;font-weight:500;letter-spacing:-.03em;color:#fff}
+.ch-card span{font-family:var(--mono);font-size:13px;color:#D6D2CA}
+.ch-card.empty{background:transparent;border:1px dashed var(--line);display:flex;align-items:flex-end;min-height:180px;padding:14px}
+.ch-card.empty b{color:var(--mute)}
+.chapter{padding-top:clamp(56px,8vw,112px)}
+.ch-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(20px,5vw,72px);align-items:end;margin-bottom:clamp(24px,3vw,40px)}
+.ch-head .num{font-family:var(--mono);color:var(--amber);font-size:13px;margin:0 0 10px}
+.story{font-family:var(--mono);font-size:15px;line-height:1.7;color:var(--text);max-width:58ch;margin:0}
+.story.todo{color:var(--mute);border-left:2px dashed var(--line);padding-left:14px}
+.ch-cover{margin:0 0 clamp(16px,2vw,24px);background:#000;cursor:zoom-in}
+.ch-cover img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.day{font-family:var(--mono);font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:10px;margin:clamp(20px,3vw,32px) 0 12px;column-span:all}
+.photos figure figcaption{font-family:var(--mono);font-size:12px;color:var(--mute);padding:6px 2px 0;background:var(--ink)}
+
+/* image protection */
+img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+.copy-note{font-family:var(--mono);font-size:12px;color:var(--mute)}
+
+@media (max-width:860px){
+  .contact-block,.ch-head{grid-template-columns:minmax(0,1fr)}
+  .clist div{grid-template-columns:minmax(0,1fr) auto}
+  .clist dt{grid-column:1/-1}
+  .ch-cover img{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="#home">Orlando Adams</a>
+    <nav aria-label="Pages">
+      <a href="#home">Home</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#photography">Photography</a>
+      <a href="#written">Written</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="view" id="v-home" data-view="home">
+  <div class="wrap">
+    <div class="intro">
+      <figure class="portrait"><img src="img/me.jpg" alt="Black and white portrait of Orlando Adams"></figure>
+      <div>
+        <h1>Orlando Adams<span>Architecture student, moving into the art department</span></h1>
+        <p>I'm a final-year architecture student at Oxford Brookes, moving toward film set design. I design spaces for how they feel through a lens first, then work out how they get made.</p>
+        <p class="muted">My strongest project, Set One Studios, is a fabrication hub for film and TV in East London, where sets, props and costumes are built for the studios next door.</p>
+      </div>
+    </div>
+    <dl class="glance">
+      <div><dt>Studying</dt><dd>BA (Hons) Architecture, Oxford Brookes. Final year</dd></div>
+      <div><dt>Software</dt><dd>Rhino, D5 Render, Photoshop, InDesign, Illustrator, Lightroom</dd></div>
+      <div><dt>Hands on</dt><dd>Physical model-making, workshop tools, sketching</dd></div>
+      <div><dt>Also</dt><dd>Street and travel photography</dd></div>
+    </dl>
+
+    <div class="best-head">
+      <h2>Best work</h2>
+      <a class="btn" href="#architecture">All architecture</a>
+    </div>
+    <div class="best">
+      <a class="tile t-a" href="#set-one"><img src="img/so-hero.jpg" alt="Set One Studios seen through tall grasses"><span class="t-cap"><b>Set One Studios</b><span>Year 2 / Film production hub</span></span></a>
+      <a class="tile t-b" href="#set-one"><img src="img/so-aerial.jpg" alt="Misty aerial of Set One Studios on the estate" loading="lazy"><span class="t-cap"><b>Set One, aerial</b><span>D5 Render</span></span></a>
+      <a class="tile t-c" href="#capoeira"><img src="img/cp-IMG_5471.jpg" alt="Contact sheet of capoeira movement photos" loading="lazy"><span class="t-cap"><b>Capoeira</b><span>Year 1</span></span></a>
+      <a class="tile t-d" href="#common-ground"><img src="img/cg-street.jpg" alt="Common Ground Studios from the street" loading="lazy"><span class="t-cap"><b>Common Ground</b><span>Year 2</span></span></a>
+      <a class="tile t-e" href="#light"><img src="img/dc-bulb.jpg" alt="Glowing filament bulb render" loading="lazy"><span class="t-cap"><b>Light studies</b><span>Year 2</span></span></a>
+      <a class="tile t-f" href="#photography"><img src="img/ph-DSC00046.jpg" alt="Black and white photo of fishermen hauling nets" loading="lazy"><span class="t-cap"><b>Photography</b><span>Kochi, India</span></span></a>
+    </div>
+
+    <section class="contact-block" id="contact">
+      <div>
+        <p class="eyebrow">Contact / CV</p>
+        <h2>Request my CV</h2>
+        <p class="muted" style="max-width:44ch">My CV is sent on request. WhatsApp is the quickest way to reach me.</p>
+        <div class="cv-actions">
+          <a class="btn solid" href="https://wa.me/447484750932?text=Hi%20Orlando%2C%20I%27ve%20seen%20your%20portfolio.%20Could%20you%20send%20me%20your%20CV%3F" target="_blank" rel="noopener">Request CV on WhatsApp</a>
+        </div>
+      </div>
+      <dl class="clist">
+        <div><dt>WhatsApp</dt><dd id="phone">07484 750 932</dd><button class="btn copy" type="button" data-copy="phone">Copy</button></div>
+        <div><dt>Email</dt><dd id="email">adamsorlando111@gmail.com</dd><button class="btn copy" type="button" data-copy="email">Copy</button></div>
+        <div><dt>Based</dt><dd>Oxford and Suffolk</dd><span></span></div>
+      </dl>
+    </section>
+  </div>
+</div>
+
+<div class="view" id="v-architecture" data-view="architecture" hidden>
+  <div class="wrap">
+    <section class="part" style="padding-bottom:0">
+      <p class="eyebrow">Architecture</p>
+      <h2 class="part-title">Four years of work</h2>
+      <p class="lede part-lede">Oldest to newest. Open a year to see its projects.</p>
+    </section>
+    <div class="years">
+      <details class="year" id="alevels">
+        <summary><span class="y-title"><b>A levels</b><span>Wymondham College</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
+        <div class="y-body">
+          <article class="project">
+            <div class="shead"><div><p class="eyebrow">Extended Project Qualification</p><h2>Floating home, Prek Toal</h2></div><p class="lede">A floating home designed and rendered for Prek Toal, Cambodia.</p></div>
+            <p class="soon mono">Images being added</p>
+          </article>
+        </div>
+      </details>
+
+      <details class="year" id="year1">
+        <summary><span class="y-title"><b>Year 1</b><span>2 projects</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
+        <div class="y-body">
+          <article class="project" id="capoeira">
+            <div class="shead"><div><p class="eyebrow">Year 1</p><h2>Capoeira gym</h2></div><p class="lede">A gym for capoeira. The design started with the body: photographing each move, mapping the muscles it works, then shaping the rooms around the space those moves need.</p></div>
+            <div class="grid g2">
+              <figure class="plate dark" data-cap="Movement study"><img src="img/cp-IMG_5471.jpg" alt="Contact sheet of labelled capoeira movement photos" loading="lazy"><div class="plate-cap"><span><b>Movement study</b></span><span>Photography</span></div></figure>
+              <figure class="plate " data-cap="Muscle mapping"><img src="img/cp-Untitled_2025-03-10_13_52_32.jpg" alt="Three figures with muscle groups coloured" loading="lazy"><div class="plate-cap"><span><b>Muscle mapping</b></span><span>Drawing</span></div></figure>
+            </div>
+            <div class="grid g3 cutouts">
+              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement.jpg" alt="Cut-out of a capoeira player mid-move" loading="lazy"></figure>
+              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement_2.jpg" alt="Cut-out of a cartwheel with motion blur" loading="lazy"></figure>
+              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement_3.jpg" alt="Cut-out of a player in a handstand move" loading="lazy"></figure>
+            </div>
+            <div class="grid g2">
+              <figure class="plate " data-cap="East section"><img src="img/cp-East_Section-1.jpg" alt="Section with figures playing capoeira" loading="lazy"><div class="plate-cap"><span><b>East section</b></span><span>Line drawing</span></div></figure>
+              <figure class="plate " data-cap="Construction detail"><img src="img/cp-1-20_Construction_Detail-1.jpg" alt="1:20 construction section" loading="lazy"><div class="plate-cap"><span><b>Construction detail</b></span><span>1:20</span></div></figure>
+            </div>
+            <div class="grid g2">
+              <figure class="plate " data-cap="Ground floor in context"><img src="img/cp-Ground_floor_in_context-1.jpg" alt="Ground floor plan in context" loading="lazy"><div class="plate-cap"><span><b>Ground floor in context</b></span><span>Plan</span></div></figure>
+              <figure class="plate " data-cap="East elevation"><img src="img/cp-East_Elevation-1.jpg" alt="East elevation line drawing" loading="lazy"><div class="plate-cap"><span><b>East elevation</b></span><span>Line drawing</span></div></figure>
+            </div>
+          </article>
+          <article class="project" id="graduation-station">
+            <div class="shead"><div><p class="eyebrow">Year 1</p><h2>Graduation Station</h2></div></div>
+            <p class="soon mono">Images being added</p>
+          </article>
+        </div>
+      </details>
+
+      <details class="year" id="year2" open>
+        <summary><span class="y-title"><b>Year 2</b><span>Unit L: Repair, Exchange, Production</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
+        <div class="y-body">
+          <p class="lede">Three projects on one estate in Bow, each a step up in scale: a bolt-on repair workshop, then a making and exchange centre, then a full production studio for film.</p>
+          <article class="project" id="offset">
+            <div class="shead"><div><p class="eyebrow">Unit L, Part 1: Repair</p><h2>Offset Studios</h2></div><p class="lede">A small repair workshop that bolts onto an existing block.</p></div>
+            <p class="soon mono">Images being added</p>
+          </article>
+          <article class="project" id="common-ground">
+            <div class="shead"><div><p class="eyebrow">Unit L, Part 2: Exchange</p><h2>Common Ground Studios</h2></div><p class="lede">A furniture making and repair centre with an assembly hall. Residents build, fix and sell at auction, bringing people into Bow and funding the next round of work.</p></div>
+            <figure class="frame " data-cap="Street view"><img src="img/cg-street.jpg" alt="Brick and timber workshop with arched openings" loading="lazy"><figcaption><span><b>Street view</b></span><span>D5 Render</span></figcaption></figure>
+            <div class="grid g2">
+              <figure class="frame tall" data-cap="Aerial"><img src="img/cg-axo.jpg" alt="Aerial of the workshop with glass-brick chimney" loading="lazy"><figcaption><span><b>Aerial</b></span><span>D5 Render</span></figcaption></figure>
+              <figure class="frame tall" data-cap="Roof plan"><img src="img/cg-roof.jpg" alt="Top-down view of the site with railway" loading="lazy"><figcaption><span><b>Roof plan</b></span><span>Rendered</span></figcaption></figure>
+            </div>
+          </article>
+          
+      <article class="project" id="set-one">
+        <div class="shead">
+          <div><p class="eyebrow">Unit L, Part 3: Production</p><h2>Set One Studios</h2></div>
+          <div>
+            <p class="lede">A fabrication hub for film and TV on the Malmesbury Estate in Bow, a short walk from Three Mills Studios. Sets, props and costumes are built here and fed into London's production network.</p>
+            <p class="lede muted">A three-storey hempcrete and timber workshop inside a polycarbonate shell. A skybridge links it to the existing block, which gains a workers' café, quieter offices, winter gardens and new community rooms.</p>
+          </div>
+        </div>
+        <figure class="frame" data-cap="Set One Studios. Aerial"><img src="img/so-aerial.jpg" alt="Misty aerial of the glowing studio among estate housing, a train passing below" loading="lazy"><figcaption><span><b>Establishing shot</b> / estate, railway, City skyline</span><span>D5 Render</span></figcaption></figure>
+        <dl class="facts">
+          <div><dt>Programme</dt><dd>Set, prop &amp; costume fabrication</dd></div>
+          <div><dt>Structure</dt><dd>Hempcrete &amp; timber in polycarbonate</dd></div>
+          <div><dt>Wall U-value</dt><dd>0.26 W/m²K</dd></div>
+          <div><dt>Site</dt><dd>Malmesbury Estate, Bow</dd></div>
+        </dl>
+        <div class="grid g2">
+          <figure class="frame tall" data-cap="Entrance"><img src="img/so-facade.jpg" alt="Front of the polycarbonate studio under a bright sky" loading="lazy"><figcaption><span><b>Entrance</b></span><span>Day</span></figcaption></figure>
+          <figure class="frame tall" data-cap="The Yard"><img src="img/so-night.jpg" alt="Lit ground-floor workshop opening onto a planted yard at dusk" loading="lazy"><figcaption><span><b>The Yard</b></span><span>Dusk</span></figcaption></figure>
+        </div>
+        <div class="split rev">
+          <div class="note">
+            <p class="eyebrow">Built like a set</p>
+            <h3>The Set Design Court</h3>
+            <p>The rooftop courts take the pitched and sawtooth rooflines of the surrounding streets and flatten them into 2D panels on perforated steel posts.</p>
+            <p>They come down as easily as they go up, and groups can reconfigure them without tools. The same logic as a flat on a sound stage.</p>
+          </div>
+          <figure class="frame tall" data-cap="Roof court"><img src="img/so-court.jpg" alt="Rooftop court with a purple house-shaped panel" loading="lazy"><figcaption><span><b>Roof court</b></span><span>Panels in use</span></figcaption></figure>
+        </div>
+        <div class="grid g3">
+          <figure class="frame tall" data-cap="Squash court"><img src="img/so-squash.jpg" alt="Squash players on a perforated blue floor" loading="lazy"><figcaption><span><b>Squash court</b></span><span>Community use</span></figcaption></figure>
+          <figure class="frame tall" data-cap="Practice room"><img src="img/so-guitar.jpg" alt="Man playing guitar in a room lined with polycarbonate" loading="lazy"><figcaption><span><b>Practice room</b></span><span>Community use</span></figcaption></figure>
+          <figure class="frame tall" data-cap="Mezzanine"><img src="img/so-mezz.jpg" alt="Timber-framed mezzanine office" loading="lazy"><figcaption><span><b>Mezzanine</b></span><span>Exposed timber</span></figcaption></figure>
+        </div>
+        <div class="grid g2">
+          <figure class="frame tall" data-cap="Old and new"><img src="img/so-gap.jpg" alt="Narrow sunlit gap between polycarbonate and brick" loading="lazy"><figcaption><span><b>Old and new</b></span><span>Interior</span></figcaption></figure>
+          <figure class="frame tall" data-cap="The skybridge side"><img src="img/so-alley.jpg" alt="Path between the studio and existing block" loading="lazy"><figcaption><span><b>The skybridge side</b></span><span>Exterior</span></figcaption></figure>
+        </div>
+        <div class="grid g2">
+          <figure class="frame tall" data-cap="Axonometric"><img src="img/so-axo4.jpg" alt="Night axonometric of the studio and estate" loading="lazy"><figcaption><span><b>Axonometric</b></span><span>Night</span></figcaption></figure>
+          <figure class="frame tall" data-cap="Axonometric"><img src="img/so-axo3.jpg" alt="Second night axonometric from another angle" loading="lazy"><figcaption><span><b>Axonometric</b></span><span>Night</span></figcaption></figure>
+        </div>
+        <figure class="frame " data-cap="West elevation"><img src="img/so-elevation.jpg" alt="West elevation render against a grey sky" loading="lazy"><figcaption><span><b>West elevation</b></span><span>Rendered</span></figcaption></figure>
+        <div class="grid g3">
+          <figure class="frame tall" data-cap="The estate"><img src="img/so-estate.jpg" alt="Estate housing seen from beside the studio" loading="lazy"><figcaption><span><b>The estate</b></span><span>Context</span></figcaption></figure>
+          <figure class="frame tall" data-cap="Housing upgrade"><img src="img/so-housing.jpg" alt="Existing housing block reclad with winter gardens" loading="lazy"><figcaption><span><b>Housing upgrade</b></span><span>Retrofit</span></figcaption></figure>
+          <figure class="frame tall" data-cap="Street approach"><img src="img/so-street.jpg" alt="Street approach to Set One Studios" loading="lazy"><figcaption><span><b>Street approach</b></span><span>Context</span></figcaption></figure>
+        </div>
+      </article>
+          <article class="project" id="light">
+            <div class="shead"><div><p class="eyebrow">Digital Culture module</p><h2>Light studies</h2></div><p class="lede">A lamp designed and lit from scratch, testing how one warm source sets the mood of a room.</p></div>
+            <div class="grid g4">
+              <figure class="frame sq" data-cap="Bulb"><img src="img/dc-bulb.jpg" alt="Glowing filament bulb" loading="lazy"><figcaption><span><b>Bulb</b></span><span>Close</span></figcaption></figure>
+              <figure class="frame sq" data-cap="Lamp"><img src="img/dc-lamp.jpg" alt="Lamp on a desk" loading="lazy"><figcaption><span><b>Lamp</b></span><span>Medium</span></figcaption></figure>
+              <figure class="frame sq" data-cap="Desk"><img src="img/dc-desk.jpg" alt="Dark desk lit by one lamp" loading="lazy"><figcaption><span><b>Desk</b></span><span>Wide</span></figcaption></figure>
+              <figure class="frame sq" data-cap="Base"><img src="img/dc-base.jpg" alt="Concrete lamp base with crystal filament" loading="lazy"><figcaption><span><b>Base</b></span><span>Detail</span></figcaption></figure>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details class="year" id="year3">
+        <summary><span class="y-title"><b>Year 3</b><span>In progress</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
+        <div class="y-body"><p class="soon mono">Final-year studio at Oxford Brookes. Added as the work develops.</p></div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<div class="view" id="v-photography" data-view="photography" hidden>
+  <div class="wrap">
+    <section class="part" style="padding-bottom:0">
+      <p class="eyebrow">Photography</p>
+      <h2 class="part-title">Places, in chapters</h2>
+      <p class="lede part-lede">Each chapter is one place and the days I spent there. Pick one to start.</p>
+      <div class="chapters-index">
+        <a class="ch-card" href="#kochi"><img src="img/ph-DSC00046.jpg" alt="" loading="lazy" draggable="false"><span class="c"><b>Kochi, India</b><span>Dec 2025 / 26 frames</span></span></a>
+        <a class="ch-card" href="#elsewhere"><img src="img/ph-IMG_4114.jpg" alt="" loading="lazy" draggable="false"><span class="c"><b>Unsorted</b><span>2 frames</span></span></a>
+        <div class="ch-card empty"><b>Oxford, Norfolk, Cambridge</b></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="kochi">
+      <div class="ch-head">
+        <div><p class="num">Chapter 01</p><h2>Kochi, India</h2><p class="mono muted" style="margin:10px 0 0">12 to 19 December 2025</p></div>
+        <p class="story todo">Your story goes here: why you went, what the city felt like, what you were looking for with the camera. Three or four sentences.</p>
+      </div>
+      <figure class="ch-cover" data-cap="Kochi, India / 19 Dec 2025"><img src="img/ph-DSC00046.jpg" alt="Fishermen hauling nets at dawn, black and white" draggable="false"></figure>
+      <div class="photos">
+<p class="day">12 Dec 2025</p>
+<figure data-cap="Kochi, India / 12 Dec 2025"><img src="img/ph-DSC06983.jpg" alt="Photograph, Kochi, 12 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 12 Dec 2025"><img src="img/ph-DSC06995.jpg" alt="Photograph, Kochi, 12 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 12 Dec 2025"><img src="img/ph-DSC07219.jpg" alt="Photograph, Kochi, 12 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">13 Dec 2025</p>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07258.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07275-2.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07325.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07362.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07394.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07443-2.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07472.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07491.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07601.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07608-2.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 13 Dec 2025"><img src="img/ph-DSC07652.jpg" alt="Photograph, Kochi, 13 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">14 Dec 2025</p>
+<figure data-cap="Kochi, India / 14 Dec 2025"><img src="img/ph-DSC07895.jpg" alt="Photograph, Kochi, 14 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 14 Dec 2025"><img src="img/ph-DSC08224.jpg" alt="Photograph, Kochi, 14 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 14 Dec 2025"><img src="img/ph-DSC08307.jpg" alt="Photograph, Kochi, 14 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 14 Dec 2025"><img src="img/ph-DSC08333.jpg" alt="Photograph, Kochi, 14 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 14 Dec 2025"><img src="img/ph-DSC08456.jpg" alt="Photograph, Kochi, 14 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">15 Dec 2025</p>
+<figure data-cap="Kochi, India / 15 Dec 2025"><img src="img/ph-DSC08519.jpg" alt="Photograph, Kochi, 15 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">17 Dec 2025</p>
+<figure data-cap="Kochi, India / 17 Dec 2025"><img src="img/ph-DSC09354.jpg" alt="Photograph, Kochi, 17 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 17 Dec 2025"><img src="img/ph-DSC09399.jpg" alt="Photograph, Kochi, 17 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">18 Dec 2025</p>
+<figure data-cap="Kochi, India / 18 Dec 2025"><img src="img/ph-DSC09506.jpg" alt="Photograph, Kochi, 18 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 18 Dec 2025"><img src="img/ph-DSC09518.jpg" alt="Photograph, Kochi, 18 Dec" loading="lazy" draggable="false"></figure>
+<p class="day">19 Dec 2025</p>
+<figure data-cap="Kochi, India / 19 Dec 2025"><img src="img/ph-DSC00035-2.jpg" alt="Photograph, Kochi, 19 Dec" loading="lazy" draggable="false"></figure>
+<figure data-cap="Kochi, India / 19 Dec 2025"><img src="img/ph-DSC00041.jpg" alt="Photograph, Kochi, 19 Dec" loading="lazy" draggable="false"></figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="elsewhere">
+      <div class="ch-head">
+        <div><p class="num">Unsorted</p><h2>To be placed</h2></div>
+        <p class="story todo">Tell me where these were taken and they move into their own chapter.</p>
+      </div>
+      <div class="photos">
+        <figure data-cap="Unsorted"><img src="img/ph-IMG_4114.jpg" alt="Snowy mountain ridges, black and white" loading="lazy" draggable="false"></figure>
+        <figure data-cap="Unsorted / 25 Dec 2024"><img src="img/ph-IMG_4153.jpg" alt="Stone courtyard and window in shadow" loading="lazy" draggable="false"></figure>
+      </div>
+    </section>
+    <p class="copy-note" style="margin-top:40px">All photographs © Orlando Adams. Please ask before using any image.</p>
+  </div>
+</div>
+<div class="view" id="v-written" data-view="written" hidden>
+  <div class="wrap">
+    <section class="part">
+      <p class="eyebrow">Written</p>
+      <h2 class="part-title">Writing</h2>
+      <div class="essays">
+        <article class="essay">
+          <p class="mono muted">Dissertation / working title</p>
+          <h3>Architecture after the end of the world</h3>
+          <p>How post-apocalyptic television repurposes architecture, through <i>Station Eleven</i> and <i>The Last of Us</i>.</p>
+          <p class="mono muted">Full text on request</p>
+        </article>
+      </div>
+    </section>
+  </div>
+</div></main>
+<footer><div class="wrap mono"><span>© Orlando Adams 2026. All images are my own and may not be reused without permission.</span><span>07484 750 932 / adamsorlando111@gmail.com</span></div></footer>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="btn" id="lbClose" type="button">Close</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</div>
+
+<script>
+(function(){
+  var views={home:1,architecture:1,photography:1,written:1};
+  var sub={"set-one":"year2","common-ground":"year2","light":"year2","offset":"year2","capoeira":"year1","graduation-station":"year1","alevels":"alevels","year1":"year1","year2":"year2","year3":"year3","contact":"home","kochi":"photography","elsewhere":"photography"};
+  function route(){
+    var h=(location.hash||'#home').slice(1), v=views[h]?h:(sub[h]?(views[sub[h]]?sub[h]:'architecture'):'home');
+    document.querySelectorAll('.view').forEach(function(el){el.hidden=el.getAttribute('data-view')!==v;});
+    document.querySelectorAll('.top nav a').forEach(function(a){ if(a.getAttribute('href')==='#'+v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    var target=null;
+    if(!views[h]&&sub[h]){ var d=document.getElementById(sub[h]); if(d&&d.tagName==='DETAILS') d.open=true; target=document.getElementById(h); }
+    if(target){ requestAnimationFrame(function(){ target.scrollIntoView(); }); } else { window.scrollTo(0,0); }
+  }
+  window.addEventListener('hashchange',route); route();
+
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),last=null;
+  function open(fig){ var i=fig.querySelector('img'); if(!i) return; last=fig; img.src=i.src; img.alt=i.alt; cap.textContent=fig.getAttribute('data-cap')||''; lb.hidden=false; document.getElementById('lbClose').focus(); }
+  function close(){ lb.hidden=true; img.src=''; if(last&&last.focus) last.focus(); }
+  document.querySelectorAll('figure[data-cap]').forEach(function(f){ f.tabIndex=0; f.addEventListener('click',function(){open(f)}); f.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f);} }); });
+  lb.addEventListener('click',function(e){ if(e.target!==img) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) close(); });
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.getAttribute('data-copy')), t=el.textContent.replace(/\s/g,b.getAttribute('data-copy')==='phone'?'':' ');
+      function sel(){ var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Ctrl+C'; }
+      try{ navigator.clipboard.writeText(t).then(function(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy'},1600); },sel); }catch(e){ sel(); }
+    });
+  });
+  // deter casual saving of images
+  document.addEventListener('contextmenu',function(e){ if(e.target.closest('img,figure,.tile,.ch-card,.lb')) e.preventDefault(); });
+  document.addEventListener('dragstart',function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
+  document.querySelectorAll('img').forEach(function(i){ i.setAttribute('draggable','false'); });
+})();
+</script>
+
+</body>
+</html>
