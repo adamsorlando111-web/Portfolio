@@ -1,0 +1,39 @@
+# Portfolio website: working notes
+
+Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxford Brookes, moving into film set design / art department.
+
+## Live site
+- https://adamsorlando111-web.github.io/Portfolio/ (capital P matters; lowercase gives 404)
+- GitHub Pages serves `main` branch root. A push to `main` goes live in about 2 minutes.
+
+## Files
+- `index.html`: the whole site in one file (HTML, CSS, JS inline). Hash routing: `#home`, `#architecture`, `#photography`, `#written`, `#contact`. Project anchors (`#set-one`, `#capoeira`, `#common-ground`, `#light`, `#offset`, `#graduation-station`, `#kochi`) open the right view/year automatically (see `sub` map in the script).
+- `img/`: web-size JPGs, long edge about 1,600 to 1,800 px, quality about 78. Prefixes: `so-` Set One, `cg-` Common Ground, `cp-` Capoeira, `dc-` Digital Culture light studies, `ph-` photography, `me.jpg` portrait.
+- `.nojekyll`: keep it.
+
+## Rules from Lando
+- Images must come ONLY from his OneDrive folder `C:\Users\adams\OneDrive\Architecture\Portfolio` (never from the 5002 submission files).
+- Never use em dashes in any copy.
+- Keep copy short and plain. Don't invent facts (titles, locations, briefs); leave a visible placeholder and ask.
+- Commit as `Claude <noreply@anthropic.com>` so commits show Verified.
+
+## Design system
+- Dark, single theme. Tokens in `:root`: ink #0F1113, panel #181B1E, line #2A2E33, text #E8E4DC, mute #8E949A, accent amber #E3A34A.
+- Type: Inter Tight (Neue Haas Grotesk stand-in; real Neue Haas can't load from Google Fonts) + Courier Prime (typewriter) for captions, labels and story text.
+- Subtle film-grain overlay (`body::after`).
+- Renders shown as letterboxed "frames" with mono captions; drawings on white "plates".
+- Image protection: right-click and drag blocked on images, copyright line in footer and Photography page.
+
+## Structure
+- Home: portrait, intro, at-a-glance strip, 6 best-work tiles, Request CV (WhatsApp button + copyable phone/email).
+- Architecture: collapsible `<details>` per year: A levels (EPQ floating home, Prek Toal, placeholder), Year 1 (Capoeira gym with images; Graduation Station placeholder), Year 2 (Offset Studios placeholder, Common Ground, Set One Studios, Light studies; open by default), Year 3 (in progress).
+- Photography: chapter index, Chapter 01 Kochi, India (12 to 19 Dec 2025, grouped by capture day, story placeholder), Unsorted (2 photos, locations unknown). Oxford, Norfolk, Cambridge chapters to come.
+- Written: dissertation card (working title placeholder; topic: post-apocalyptic TV and architecture, Station Eleven and The Last of Us).
+
+## Contact details shown on site
+- WhatsApp 07484 750 932 (preferred), email adamsorlando111@gmail.com, based Oxford and Suffolk.
+
+## Workflow for updates
+1. Lando drops images into his Portfolio folder (linked computer) or sends text in chat.
+2. Make thumbnails on the device, stage the chosen ones, resize to web size, add to `img/`.
+3. Edit `index.html`, check at 390 px width (no horizontal scroll), commit, push.
