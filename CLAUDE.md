@@ -33,6 +33,7 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 - Reveals: `[data-reveal]` fade up, `[data-rimg]` image mask wipe, `[data-split]` word-by-line rise (all h2 auto-split). Eyebrows, `.num` and `[data-type]` type on like a typewriter with an amber caret. Courier text has a faint ink bleed (text-shadow).
 - Animated grain, vignette and slow drifting light behind content. Custom cursor ("View" over images) and magnetic buttons on mouse devices only.
 - Everything switches off under prefers-reduced-motion; a 6 s fallback shows all content if JS fails.
+- Phones (under 760 px): header nav becomes a Menu button that opens a full-screen menu with big rising links and contact details; the hero name is sized to fill the screen. Under 560 px, Best work becomes a swipeable reel with a 01 / 05 counter. Lightbox everywhere: swipe or arrow keys through a project's images, swipe down to close. Custom cursor only on mouse devices.
 - Reveals use viewport checks, not IntersectionObserver (clip-path hid targets from IO in Chrome).
 
 ## Structure
