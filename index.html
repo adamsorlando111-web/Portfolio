@@ -484,6 +484,9 @@ html.has-cur,html.has-cur *{cursor:none!important}
   .atmos i,.hx-fog i,.hx-media img,body::after,.eyebrow::before,.hx-scroll::after,.caret{animation:none}
   .pic img,.tile img,.ch-card img,.models img{transition:none}
 }
+
+/* private preview badge: only shows away from the public github.io site */
+.wip-tag{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:60;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--amber);padding:6px 10px;pointer-events:none;text-shadow:none}
 </style>
 </head>
 <body>
@@ -808,6 +811,7 @@ html.has-cur,html.has-cur *{cursor:none!important}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=matchMedia('(pointer: fine)').matches;
   clearTimeout(window.__rvT);
+  if(!/github\.io$/.test(location.hostname)){ var wt=document.createElement('div'); wt.className='wip-tag'; wt.setAttribute('aria-hidden','true'); wt.textContent='Work in progress / private'; document.body.appendChild(wt); }
 
   /* ---------- smooth scroll ---------- */
   var lenis=null;

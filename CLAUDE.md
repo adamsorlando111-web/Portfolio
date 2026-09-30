@@ -44,6 +44,13 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 ## Contact details shown on site
 - WhatsApp 07484 750 932 (preferred), email adamsorlando111@gmail.com, based Oxford and Suffolk.
 
+## Two versions: public and private WIP
+- PUBLIC: GitHub Pages from `main` (URL above). Only finished work goes here.
+- PRIVATE WIP: a Claude artifact, https://claude.ai/artifact/WYdkJ3zNnVrCpK8swg61DX ("Portfolio WIP"). Only Lando can open it unless he shares it. Shows an amber "Work in progress / private" tag (the tag hides itself on github.io).
+- This repo is PUBLIC, so never push unfinished work to any branch here. Work in progress lives only in the artifact.
+- To update WIP: edit `index.html` locally, build the artifact copy (strip `<!doctype>`, `<html>`, `<head>`, `<body>`, charset/viewport metas; put `<title>Portfolio WIP</title>` first), publish with Artifact `url` = the WIP link and `files` = every `img/*` plus `js/lenis.min.js`. In a new chat, first `Artifact read` the WIP link and rebuild `index.html` from it if it is ahead of `main`.
+- To go public: when Lando says "publish" / "make it live", commit the same `index.html` + images to `main` and push.
+
 ## Workflow for updates
 1. Lando drops images into his Portfolio folder (linked computer) or sends text in chat.
 2. Make thumbnails on the device, stage the chosen ones, resize to web size, add to `img/`.
