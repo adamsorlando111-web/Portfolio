@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Orlando Adams: architecture, photography and writing. Final-year architecture student at Oxford Brookes working across architecture and film set design.">
+<meta name="description" content="Orlando Adams: architecture and photography. Final-year architecture student at Oxford Brookes working across architecture and film set design.">
 <style>[hidden]{display:none!important}</style>
 <script>document.documentElement.classList.add("js");window.__rvT=setTimeout(function(){document.documentElement.classList.add("rv-fail")},6000);</script>
 <title>Orlando Adams</title>
@@ -485,6 +485,13 @@ html.has-cur,html.has-cur *{cursor:none!important}
   .pic img,.tile img,.ch-card img,.models img{transition:none}
 }
 
+/* word masks: room for overshooting letters (the O and s of the hero) */
+.w{padding:0 .09em .1em;margin:0 -.09em -.1em}
+/* best work: when there are five tiles, the last two share the row */
+@media (min-width:861px){.best:not(:has(.t-c)) .t-e,.best:not(:has(.t-c)) .t-f{grid-column:span 3}.best:not(:has(.t-c)) .t-e img,.best:not(:has(.t-c)) .t-f img{aspect-ratio:21/9}}
+
+
+
 /* private preview badge: only shows away from the public github.io site */
 .wip-tag{position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:60;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--amber);padding:6px 10px;pointer-events:none;text-shadow:none}
 </style>
@@ -508,7 +515,6 @@ html.has-cur,html.has-cur *{cursor:none!important}
       <a href="#home">Home</a>
       <a href="#architecture">Architecture</a>
       <a href="#photography">Photography</a>
-      <a href="#written">Written</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -555,7 +561,6 @@ html.has-cur,html.has-cur *{cursor:none!important}
     <div class="best">
       <a class="tile t-a" href="#set-one"><img src="img/so-hero.jpg" alt="Set One Studios seen through tall grasses"><span class="t-cap"><b>Set One Studios</b><span>Year 2 / Film production hub</span></span></a>
       <a class="tile t-b" href="#set-one"><img src="img/so-aerial.jpg" alt="Misty aerial of Set One Studios on the estate" loading="lazy"><span class="t-cap"><b>Set One, aerial</b><span>D5 Render</span></span></a>
-      <a class="tile t-c" href="#capoeira"><img src="img/cp-IMG_5471.jpg" alt="Contact sheet of capoeira movement photos" loading="lazy"><span class="t-cap"><b>Capoeira</b><span>Year 1</span></span></a>
       <a class="tile t-d" href="#common-ground"><img src="img/cg-street.jpg" alt="Common Ground Studios from the street" loading="lazy"><span class="t-cap"><b>Common Ground</b><span>Year 2</span></span></a>
       <a class="tile t-e" href="#light"><img src="img/dc-bulb.jpg" alt="Glowing filament bulb render" loading="lazy"><span class="t-cap"><b>Light studies</b><span>Year 2</span></span></a>
       <a class="tile t-f" href="#photography"><img src="img/ph-DSC00046.jpg" alt="Black and white photo of fishermen hauling nets" loading="lazy"><span class="t-cap"><b>Photography</b><span>Kochi, India</span></span></a>
@@ -583,7 +588,7 @@ html.has-cur,html.has-cur *{cursor:none!important}
   <div class="wrap">
     <section class="part" style="padding-bottom:0">
       <p class="eyebrow">Architecture</p>
-      <h2 class="part-title">Four years of work</h2>
+      <h2 class="part-title">Selected work</h2>
       <p class="lede part-lede">Oldest to newest. Open a year to see its projects.</p>
     </section>
     <div class="years">
@@ -592,36 +597,6 @@ html.has-cur,html.has-cur *{cursor:none!important}
         <div class="y-body">
           <article class="project">
             <div class="shead"><div><p class="eyebrow">Extended Project Qualification</p><h2>Floating home, Prek Toal</h2></div><p class="lede">A floating home designed and rendered for Prek Toal, Cambodia.</p></div>
-            <p class="soon mono">Images being added</p>
-          </article>
-        </div>
-      </details>
-
-      <details class="year" id="year1">
-        <summary><span class="y-title"><b>Year 1</b><span>2 projects</span></span><span class="y-toggle" aria-hidden="true">+</span></summary>
-        <div class="y-body">
-          <article class="project" id="capoeira">
-            <div class="shead"><div><p class="eyebrow">Year 1</p><h2>Capoeira gym</h2></div><p class="lede">A gym for capoeira. The design started with the body: photographing each move, mapping the muscles it works, then shaping the rooms around the space those moves need.</p></div>
-            <div class="grid g2">
-              <figure class="plate dark" data-cap="Movement study"><img src="img/cp-IMG_5471.jpg" alt="Contact sheet of labelled capoeira movement photos" loading="lazy"><div class="plate-cap"><span><b>Movement study</b></span><span>Photography</span></div></figure>
-              <figure class="plate " data-cap="Muscle mapping"><img src="img/cp-Untitled_2025-03-10_13_52_32.jpg" alt="Three figures with muscle groups coloured" loading="lazy"><div class="plate-cap"><span><b>Muscle mapping</b></span><span>Drawing</span></div></figure>
-            </div>
-            <div class="grid g3 cutouts">
-              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement.jpg" alt="Cut-out of a capoeira player mid-move" loading="lazy"></figure>
-              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement_2.jpg" alt="Cut-out of a cartwheel with motion blur" loading="lazy"></figure>
-              <figure class="plate" data-cap="Movement cut-out"><img src="img/cp-movement_3.jpg" alt="Cut-out of a player in a handstand move" loading="lazy"></figure>
-            </div>
-            <div class="grid g2">
-              <figure class="plate " data-cap="East section"><img src="img/cp-East_Section-1.jpg" alt="Section with figures playing capoeira" loading="lazy"><div class="plate-cap"><span><b>East section</b></span><span>Line drawing</span></div></figure>
-              <figure class="plate " data-cap="Construction detail"><img src="img/cp-1-20_Construction_Detail-1.jpg" alt="1:20 construction section" loading="lazy"><div class="plate-cap"><span><b>Construction detail</b></span><span>1:20</span></div></figure>
-            </div>
-            <div class="grid g2">
-              <figure class="plate " data-cap="Ground floor in context"><img src="img/cp-Ground_floor_in_context-1.jpg" alt="Ground floor plan in context" loading="lazy"><div class="plate-cap"><span><b>Ground floor in context</b></span><span>Plan</span></div></figure>
-              <figure class="plate " data-cap="East elevation"><img src="img/cp-East_Elevation-1.jpg" alt="East elevation line drawing" loading="lazy"><div class="plate-cap"><span><b>East elevation</b></span><span>Line drawing</span></div></figure>
-            </div>
-          </article>
-          <article class="project" id="graduation-station">
-            <div class="shead"><div><p class="eyebrow">Year 1</p><h2>Graduation Station</h2></div></div>
             <p class="soon mono">Images being added</p>
           </article>
         </div>
@@ -781,22 +756,7 @@ html.has-cur,html.has-cur *{cursor:none!important}
     <p class="copy-note" style="margin-top:40px">All photographs © Orlando Adams. Please ask before using any image.</p>
   </div>
 </div>
-<div class="view" id="v-written" data-view="written" hidden>
-  <div class="wrap">
-    <section class="part">
-      <p class="eyebrow">Written</p>
-      <h2 class="part-title">Writing</h2>
-      <div class="essays">
-        <article class="essay">
-          <p class="mono muted">Dissertation / working title</p>
-          <h3>Architecture after the end of the world</h3>
-          <p>How post-apocalyptic television repurposes architecture, through <i>Station Eleven</i> and <i>The Last of Us</i>.</p>
-          <p class="mono muted">Full text on request</p>
-        </article>
-      </div>
-    </section>
-  </div>
-</div></main>
+</main>
 <footer><div class="wrap mono"><span>© Orlando Adams 2026. All images are my own and may not be reused without permission.</span><span>07484 750 932 / adamsorlando111@gmail.com</span></div></footer>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
   <button class="btn" id="lbClose" type="button">Close</button>
@@ -973,8 +933,9 @@ html.has-cur,html.has-cur *{cursor:none!important}
   var top=document.querySelector('.top'), prog=document.querySelector('.prog'), lastY=0;
   function header(force){
     var y=window.scrollY, onHome=current==='home';
-    top.classList.toggle('solid',!onHome||y>window.innerHeight*.6);
-    if(!force) top.classList.toggle('hide',y>lastY&&y>240);
+    var mEnd=onHome?(window.__morphEnd||0):0;
+    top.classList.toggle('solid',!onHome||y>(mEnd||window.innerHeight*.6));
+    if(!force) top.classList.toggle('hide',y>lastY&&y>(mEnd?mEnd+160:240));
     else top.classList.remove('hide');
     var max=document.documentElement.scrollHeight-innerHeight; prog.style.setProperty('--p',max>0?Math.min(1,y/max):0);
     lastY=y;
@@ -1046,6 +1007,5 @@ html.has-cur,html.has-cur *{cursor:none!important}
   document.querySelectorAll('img').forEach(function(i){ i.setAttribute('draggable','false'); });
 })();
 </script>
-
 </body>
 </html>

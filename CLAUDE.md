@@ -37,9 +37,9 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 
 ## Structure
 - Home: portrait, intro, at-a-glance strip, 6 best-work tiles, Request CV (WhatsApp button + copyable phone/email).
-- Architecture: collapsible `<details>` per year: A levels (EPQ floating home, Prek Toal, placeholder), Year 1 (Capoeira gym with images; Graduation Station placeholder), Year 2 (Offset Studios placeholder, Common Ground, Set One Studios, Light studies; open by default), Year 3 (in progress).
+- Architecture (public title "Selected work"): collapsible `<details>` per year: A levels (EPQ floating home, Prek Toal, placeholder), Year 1 (WIP only: Capoeira gym with images; Graduation Station placeholder), Year 2 (Offset Studios placeholder, Common Ground, Set One Studios, Light studies; open by default), Year 3 (in progress).
 - Photography: chapter index, Chapter 01 Kochi, India (12 to 19 Dec 2025, grouped by capture day, story placeholder), Unsorted (2 photos, locations unknown). Oxford, Norfolk, Cambridge chapters to come.
-- Written: dissertation card (working title placeholder; topic: post-apocalyptic TV and architecture, Station Eleven and The Last of Us).
+- Written (WIP only): dissertation card (working title placeholder; topic: post-apocalyptic TV and architecture, Station Eleven and The Last of Us).
 
 ## Contact details shown on site
 - WhatsApp 07484 750 932 (preferred), email adamsorlando111@gmail.com, based Oxford and Suffolk.
@@ -48,8 +48,11 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 - PUBLIC: GitHub Pages from `main` (URL above). Only finished work goes here.
 - PRIVATE WIP: a Claude artifact, https://claude.ai/artifact/WYdkJ3zNnVrCpK8swg61DX ("Portfolio WIP"). Only Lando can open it unless he shares it. Shows an amber "Work in progress / private" tag (the tag hides itself on github.io).
 - This repo is PUBLIC, so never push unfinished work to any branch here. Work in progress lives only in the artifact.
-- To update WIP: edit `index.html` locally, build the artifact copy (strip `<!doctype>`, `<html>`, `<head>`, `<body>`, charset/viewport metas; put `<title>Portfolio WIP</title>` first), publish with Artifact `url` = the WIP link and `files` = every `img/*` plus `js/lenis.min.js`. In a new chat, first `Artifact read` the WIP link and rebuild `index.html` from it if it is ahead of `main`.
-- To go public: when Lando says "publish" / "make it live", commit the same `index.html` + images to `main` and push.
+- ONE MASTER FILE builds both. The WIP artifact page is the master. In a new chat: `Artifact read` the WIP link, save it as `master.html` (scratchpad, not this repo), edit it, then run `python3 tools/build.py master.html` to get `index.html` (public) and `wip.html` (artifact page).
+- Markers in the master: `<!--wip:start-->...<!--wip:end-->` and `/*wip:start*/.../*wip:end*/` are WIP only; `<!--pub:start ... pub:end-->` is public only; `<!--body-->` separates head from body.
+- Publish WIP: Artifact publish `wip.html` with `url` = the WIP link and `files` = every `img/*` plus `js/lenis.min.js`.
+- Go public (only when Lando says "publish" / "make it live"): commit the built `index.html` (+ any new images) to `main` and push. Never commit `master.html` or `wip.html`.
+- WIP-only right now: Year 1 (Capoeira, Graduation Station) and the Capoeira home tile, the Written page, rain on the hero (canvas, splashes on the letters of the name), and the name morph (big title closes onto one line and flies into the header on scroll).
 
 ## Workflow for updates
 1. Lando drops images into his Portfolio folder (linked computer) or sends text in chat.
