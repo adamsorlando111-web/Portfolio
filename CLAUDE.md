@@ -56,6 +56,11 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 - WIP-only right now: A levels (EPQ floating home, Prek Toal; Terrarium House outdoor classroom for Wymondham College), Year 1 (Capoeira, Graduation Station) and the Capoeira home tile, and the Written page.
 - Public since 30 Sept: rain on the hero (canvas, splashes on the letters of the name) and the name morph (big title closes onto one line and flies into the header on scroll).
 
+## Backups
+- Claude project: `claude/portfolio-wip-master.html` + `claude/portfolio-handover.md`.
+- Lando's laptop: `C:\Users\adams\OneDrive\Architecture\Portfolio\Website\` (notes, `wip-master.html`, `build.py`, dated WIP site zip). Refresh these after big changes.
+- Link preview image: `img/og-face.jpg` (600x600), icons `favicon.png`, `apple-touch-icon.png`.
+
 ## Workflow for updates
 1. Lando drops images into his Portfolio folder (linked computer) or sends text in chat.
 2. Make thumbnails on the device, stage the chosen ones, resize to web size, add to `img/`.
