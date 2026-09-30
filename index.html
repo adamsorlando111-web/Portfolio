@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Orlando Adams: architecture, photography and writing. Final-year architecture student at Oxford Brookes working across architecture and film set design.">
 <style>[hidden]{display:none!important}</style>
+<script>document.documentElement.classList.add("js");window.__rvT=setTimeout(function(){document.documentElement.classList.add("rv-fail")},6000);</script>
 <title>Orlando Adams</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -314,11 +315,190 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   .clist dt{grid-column:1/-1}
   .ch-cover img{aspect-ratio:4/3}
 }
+
+/* ===== v2: motion, atmosphere, typewriter ===== */
+@property --k{syntax:'<number>';inherits:true;initial-value:0}
+:root{--ease:cubic-bezier(.16,1,.3,1);--ease-io:cubic-bezier(.76,0,.24,1);--hdr:64px}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+main,footer{position:relative;z-index:1}
+::selection{background:var(--amber);color:var(--ink)}
+
+/* typewriter ink: a faint bleed so Courier reads as struck, not rendered */
+.mono,.eyebrow,.plate-cap,.frame figcaption,.top nav a,.glance dt,.facts dt,.btn,.soon,.y-title span,.tile .t-cap span,.story,.day,.num,.ch-card span,.photos figure figcaption,.copy-note,.clist dt,footer{text-shadow:0 0 .7px currentColor,0 0 .15px currentColor}
+.caret{display:inline-block;width:.55em;height:1.05em;margin-left:1px;vertical-align:-.18em;background:var(--amber);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* film: animated grain, vignette, drifting light */
+body::after{inset:-60%;opacity:.085;animation:grain .9s steps(6) infinite;background-size:180px 180px}
+@keyframes grain{0%{transform:translate3d(0,0,0)}17%{transform:translate3d(-4%,3%,0)}33%{transform:translate3d(3%,-5%,0)}50%{transform:translate3d(-6%,-2%,0)}67%{transform:translate3d(5%,4%,0)}83%{transform:translate3d(-2%,6%,0)}100%{transform:translate3d(0,0,0)}}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:39;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.42) 100%)}
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.atmos i{position:absolute;width:80vmax;height:80vmax;border-radius:50%;will-change:transform}
+.atmos i:nth-child(1){left:-30vmax;top:-35vmax;background:radial-gradient(closest-side,rgba(227,163,74,.085),transparent);animation:d1 44s ease-in-out infinite alternate}
+.atmos i:nth-child(2){right:-35vmax;top:25vh;background:radial-gradient(closest-side,rgba(140,158,168,.07),transparent);animation:d2 58s ease-in-out infinite alternate}
+.atmos i:nth-child(3){left:10vw;bottom:-55vmax;background:radial-gradient(closest-side,rgba(227,163,74,.05),transparent);animation:d3 50s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate3d(22vw,26vh,0) scale(1.25)}}
+@keyframes d2{to{transform:translate3d(-26vw,-18vh,0) scale(.85)}}
+@keyframes d3{to{transform:translate3d(18vw,-24vh,0) scale(1.15)}}
+
+/* header */
+.top{position:fixed;left:0;right:0;top:0;background:transparent;border-bottom:1px solid transparent;backdrop-filter:none;-webkit-backdrop-filter:none;transition:transform .7s var(--ease),background .5s,border-color .5s,backdrop-filter .5s}
+.top.solid{background:rgba(15,17,19,.7);border-bottom-color:rgba(42,46,51,.8);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1)}
+.top.hide{transform:translateY(-101%)}
+.prog{position:absolute;left:0;top:0;height:1px;width:100%;background:var(--amber);transform-origin:left;transform:scaleX(var(--p,0));opacity:.8}
+.top nav a{position:relative;padding-block:4px;transition:color .4s}
+.top nav a::after,.top nav a[aria-current="page"]::after{content:"";display:block;position:absolute;left:0;right:0;bottom:-1px;height:1px;margin:0;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.top nav a:hover::after,.top nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.view:not(#v-home){padding-top:var(--hdr)}
+article.project,section.chapter,#intro,#contact{scroll-margin-top:90px}
+
+/* hero */
+.hx{position:relative;height:100vh;height:100svh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hx-media{position:absolute;inset:0;z-index:-3}
+.hx-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.72) contrast(1.06);--rest:1.12;animation:flicker 7s steps(1) infinite}
+@keyframes flicker{0%{filter:brightness(.6) saturate(.72) contrast(1.06)}23%{filter:brightness(.585) saturate(.72) contrast(1.06)}24%{filter:brightness(.61) saturate(.72) contrast(1.06)}61%{filter:brightness(.595) saturate(.72) contrast(1.06)}}
+.hx::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,17,19,.6) 0%,rgba(15,17,19,0) 26%,rgba(15,17,19,.15) 55%,rgba(15,17,19,.82) 86%,var(--ink) 100%)}
+.hx-fog{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hx-fog i{position:absolute;left:-60%;width:220%;height:46%;background:radial-gradient(50% 50% at 50% 50%,rgba(226,222,212,.13),transparent 70%);animation:mist 70s ease-in-out infinite}
+.hx-fog i:nth-child(1){top:32%}
+.hx-fog i:nth-child(2){top:52%;animation-duration:95s;animation-direction:reverse;opacity:.8}
+.hx-fog i:nth-child(3){top:8%;animation-duration:120s;opacity:.55}
+@keyframes mist{0%,100%{transform:translate3d(-10%,0,0)}50%{transform:translate3d(10%,-4%,0)}}
+.hx-inner{width:100%;padding-block:0 clamp(24px,4vw,48px)}
+.hx-kicker{color:var(--text);opacity:.8;margin:0 0 clamp(14px,2vw,24px);min-height:1.2em}
+.hx-title{font-weight:500;letter-spacing:-.06em;line-height:.8;margin:0;font-size:clamp(76px,17.5vw,300px);text-transform:none}
+.hx-title .ln{display:block}
+.hx-title .ln2{padding-left:clamp(28px,12vw,260px)}
+.hx-foot{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-top:clamp(20px,3vw,36px);border-top:1px solid rgba(232,228,220,.18);padding-top:16px}
+.hx-sub{margin:0;font-family:var(--mono);font-size:clamp(14px,1.3vw,17px);max-width:36ch;text-shadow:0 0 .7px currentColor}
+.hx-scroll{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--mute);flex:none}
+.hx-scroll::after{content:"";width:1px;height:38px;background:linear-gradient(var(--amber),transparent);transform-origin:top;animation:drip 2.4s var(--ease-io) infinite}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:clamp(14px,2vw,22px);position:relative;z-index:1}
+.mq-track{display:flex;width:max-content;will-change:transform}
+.mq-track span{display:flex;align-items:center;font-weight:300;font-size:clamp(34px,5.4vw,84px);letter-spacing:-.04em;line-height:1;white-space:nowrap;color:var(--text)}
+.mq-track i{font-style:normal;font-family:var(--mono);font-size:.34em;color:var(--amber);margin-inline:.9em;letter-spacing:0}
+
+/* about */
+.intro2{padding-block:clamp(72px,11vw,160px) 0}
+.statement{font-weight:400;font-size:clamp(26px,3.6vw,56px);line-height:1.08;letter-spacing:-.035em;margin:0;max-width:27ch;text-wrap:pretty}
+.statement em{font-style:normal;color:var(--amber)}
+.i2-row{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(28px,6vw,96px);align-items:end;margin-top:clamp(48px,7vw,104px)}
+.intro2 .portrait{margin:0;background:#000}
+.intro2 .portrait img{aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.08) brightness(.92)}
+.intro2 .portrait figcaption{padding-top:10px;color:var(--mute);background:var(--ink)}
+.i2-p{font-size:clamp(17px,1.4vw,20px);max-width:48ch;margin:0 0 clamp(28px,4vw,44px);color:var(--text)}
+.i2-copy .glance{grid-template-columns:repeat(2,minmax(0,1fr))}
+.i2-copy .glance div:nth-child(3){padding-left:0;border-left:0}
+.i2-copy .glance div:nth-child(n+3){border-top:1px solid var(--line)}
+
+/* eyebrow: a small breathing mark */
+.eyebrow::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:10px;vertical-align:.18em;animation:breathe 4.5s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.25;transform:scale(.7)}}
+
+/* images: masked plates and parallax */
+.pic{display:block;overflow:hidden;position:relative}
+.pic img,.tile img,.ch-card img,.models img,.hx-media img{transform:translate3d(0,var(--py,0px),0) scale(calc(var(--rest,1) + var(--k)));transition:--k 1.8s var(--ease),opacity .6s}
+.frame .pic img,.ch-cover .pic img{--rest:1.1}
+.ch-card{overflow:hidden}
+.tile:hover img,.ch-card:hover img,.models figure:hover img{--k:.05;opacity:1}
+.tile img{opacity:.92}
+.tile .t-cap span{transition:transform .6s var(--ease),color .4s}
+.tile:hover .t-cap span{color:var(--amber);transform:translateX(-4px)}
+.frame:hover figcaption b,.plate:hover .plate-cap b{color:var(--amber);transition:color .4s}
+.y-title b{transition:color .4s,transform .8s var(--ease)}
+.year > summary:hover .y-title b{transform:translateX(10px)}
+.y-body{overflow:hidden}
+.btn{transition:background .4s,color .4s,transform .5s var(--ease)}
+
+/* reveal system (only with JS, off with reduced motion) */
+.js [data-reveal]{opacity:0;transform:translate3d(0,36px,0);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease);transition-delay:var(--d,0ms)}
+.js [data-reveal].in{opacity:1;transform:none}
+.js [data-rimg]{clip-path:inset(100% 0 0 0);transition:clip-path 1.5s var(--ease-io);transition-delay:var(--d,0ms)}
+.js [data-rimg] img{--k:.22}
+.js [data-rimg].in{clip-path:inset(0 0 0 0)}
+.js [data-rimg].in img{--k:0}
+.js [data-rimg].in:hover img{--k:.05}
+.js .hx:not(.in) .hx-media img{--k:.18}
+.hx .hx-media img{transition:--k 3.2s var(--ease)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.wi{display:inline-block}
+.js [data-split] .wi{transform:translate3d(0,112%,0) rotate(3deg);transform-origin:0 100%;transition:transform 1.3s var(--ease);transition-delay:calc(var(--l,0) * 90ms + var(--d,0ms))}
+.js [data-split].in .wi{transform:none}
+.rv-fail [data-reveal],.rv-fail [data-split] .wi{opacity:1!important;transform:none!important}
+.rv-fail [data-rimg]{clip-path:none!important}
+
+/* loader + page curtain */
+.loader,.curtain{display:none}
+.js .loader{display:flex;position:fixed;inset:0;z-index:70;background:var(--ink);align-items:center;justify-content:center;clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--ease-io)}
+.js .loader.done{clip-path:inset(0 0 100% 0)}
+.ld-in{width:min(560px,82vw)}
+.ld-name{margin:0;font-size:clamp(34px,5vw,64px);letter-spacing:-.05em;font-weight:500;line-height:1}
+.ld-name .wi{transform:translate3d(0,110%,0);animation:up 1s var(--ease) .1s forwards}
+@keyframes up{to{transform:none}}
+.ld-type{margin:14px 0 22px;min-height:1.2em;color:var(--mute)}
+.ld-line{height:1px;background:var(--line);overflow:hidden}
+.ld-line i{display:block;height:100%;background:var(--amber);transform:scaleX(0);transform-origin:left;animation:grow 1.4s var(--ease-io) .2s forwards}
+@keyframes grow{to{transform:scaleX(1)}}
+.js .curtain{display:block;position:fixed;inset:0;z-index:65;background:var(--panel);transform:translateY(101%);pointer-events:none}
+.curtain i{position:absolute;left:0;right:0;top:0;height:1px;background:var(--amber)}
+
+/* cursor */
+.cur{position:fixed;left:0;top:0;z-index:80;pointer-events:none}
+.cur-dot,.cur-ring{position:fixed;left:0;top:0;border-radius:50%;will-change:transform}
+.cur-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--amber)}
+.cur-ring{width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid rgba(232,228,220,.35);display:grid;place-items:center;transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background .4s,border-color .4s}
+.cur-ring span{font-family:var(--mono);font-size:12px;color:var(--ink);opacity:0;transition:opacity .3s}
+.cur.link .cur-ring{width:58px;height:58px;margin:-29px 0 0 -29px;border-color:var(--amber)}
+.cur.view .cur-ring{width:92px;height:92px;margin:-46px 0 0 -46px;background:rgba(227,163,74,.92);border-color:transparent}
+.cur.view .cur-ring span{opacity:1}
+.cur.view .cur-dot{opacity:0}
+.cur.hidden{opacity:0}
+html.has-cur,html.has-cur *{cursor:none!important}
+
+/* lightbox */
+.lb:not([hidden]){animation:fadeIn .5s var(--ease)}
+.lb:not([hidden]) img{animation:lbImg .9s var(--ease)}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes lbImg{from{opacity:0;transform:scale(.96)}}
+
+@media (max-width:860px){
+  .i2-row{grid-template-columns:minmax(0,1fr)}
+  .intro2 .portrait{max-width:280px}
+  .hx-foot{align-items:flex-end}
+  .hx-scroll{display:none}
+}
+@media (max-width:520px){
+  .i2-copy .glance{grid-template-columns:minmax(0,1fr)}
+  .i2-copy .glance div:nth-child(n+2){border-top:1px solid var(--line)}
+  .statement{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .loader,.js .curtain{display:none}
+  .js [data-reveal],.js [data-split] .wi{opacity:1;transform:none;transition:none}
+  .js [data-rimg]{clip-path:none;transition:none}
+  .atmos i,.hx-fog i,.hx-media img,body::after,.eyebrow::before,.hx-scroll::after,.caret{animation:none}
+  .pic img,.tile img,.ch-card img,.models img{transition:none}
+}
 </style>
 </head>
 <body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="ld-in">
+    <p class="ld-name"><span class="w"><span class="wi">Orlando Adams</span></span></p>
+    <p class="ld-type mono" id="ldType"></p>
+    <div class="ld-line"><i></i></div>
+  </div>
+</div>
+<div class="curtain" id="curtain" aria-hidden="true"><i></i></div>
+<div class="atmos" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <header class="top">
+  <span class="prog" aria-hidden="true"></span>
   <div class="wrap">
     <a class="name" href="#home">Orlando Adams</a>
     <nav aria-label="Pages">
@@ -332,21 +512,38 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
 </header>
 <main>
 <div class="view" id="v-home" data-view="home">
-  <div class="wrap">
-    <div class="intro">
-      <figure class="portrait"><img src="img/me.jpg" alt="Black and white portrait of Orlando Adams"></figure>
-      <div>
-        <h1>Orlando Adams<span>Architecture and spatial design, for buildings and for film</span></h1>
-        <p>I'm a final-year architecture student at Oxford Brookes. I design buildings around the people who use them, how they are made and how they feel to move through. Alongside architecture I work toward film and TV set design, where the same skills tell a story through space, light and atmosphere.</p>
-        <p class="muted">I'm looking for opportunities in architectural practice and in film and TV art departments. My strongest project, Set One Studios, brings both together: a fabrication hub in East London where sets, props and costumes are built for the studios next door.</p>
+  <section class="hx" aria-label="Introduction">
+    <div class="hx-media"><img src="img/so-aerial.jpg" alt="Misty aerial of Set One Studios among estate housing, a train passing below" data-par="0.18"></div>
+    <div class="hx-fog" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap hx-inner">
+      <p class="hx-kicker mono" data-type>Portfolio / Architecture &amp; film</p>
+      <h1 class="hx-title" data-split><span class="ln">Orlando</span> <span class="ln ln2">Adams</span></h1>
+      <div class="hx-foot" data-reveal>
+        <p class="hx-sub">Architecture and spatial design, for buildings and for film</p>
+        <a class="hx-scroll mono" href="#intro">Scroll</a>
       </div>
     </div>
-    <dl class="glance">
-      <div><dt>Studying</dt><dd>BA (Hons) Architecture, Oxford Brookes. Final year</dd></div>
-      <div><dt>Software</dt><dd>Rhino, D5 Render, Photoshop, InDesign, Illustrator, Lightroom</dd></div>
-      <div><dt>Hands on</dt><dd>Physical model-making, workshop tools, sketching</dd></div>
-      <div><dt>Also</dt><dd>Street and travel photography</dd></div>
-    </dl>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track"><span>Architecture<i>/</i>Set design<i>/</i>Visualisation<i>/</i>Model making<i>/</i>Photography<i>/</i></span><span>Architecture<i>/</i>Set design<i>/</i>Visualisation<i>/</i>Model making<i>/</i>Photography<i>/</i></span></div></div>
+
+  <div class="wrap">
+    <section class="intro2" id="intro">
+      <p class="eyebrow">About</p>
+      <p class="statement" data-split>I'm a final-year architecture student at Oxford Brookes. I design buildings around the people who use them, how they are made and how they feel to move through. Alongside architecture I work toward film and TV set design, where the same skills tell a story through <em>space, light and atmosphere.</em></p>
+      <div class="i2-row">
+        <figure class="portrait"><img src="img/me.jpg" alt="Black and white portrait of Orlando Adams"><figcaption class="mono">Oxford / Suffolk</figcaption></figure>
+        <div class="i2-copy">
+          <p class="i2-p" data-reveal>I'm looking for opportunities in architectural practice and in film and TV art departments. My strongest project, Set One Studios, brings both together: a fabrication hub in East London where sets, props and costumes are built for the studios next door.</p>
+          <dl class="glance" data-reveal>
+            <div><dt>Studying</dt><dd>BA (Hons) Architecture, Oxford Brookes. Final year</dd></div>
+            <div><dt>Software</dt><dd>Rhino, D5 Render, Photoshop, InDesign, Illustrator, Lightroom</dd></div>
+            <div><dt>Hands on</dt><dd>Physical model-making, workshop tools, sketching</dd></div>
+            <div><dt>Also</dt><dd>Street and travel photography</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
 
     <div class="best-head">
       <h2>Best work</h2>
@@ -604,26 +801,233 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   <p id="lbCap"></p>
 </div>
 
+<script src="js/lenis.min.js"></script>
 <script>
 (function(){
+  var root=document.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(pointer: fine)').matches;
+  clearTimeout(window.__rvT);
+
+  /* ---------- smooth scroll ---------- */
+  var lenis=null;
+  if(!reduce && window.Lenis){
+    try{
+      lenis=new Lenis({lerp:.085,smoothWheel:true,wheelMultiplier:1});
+      (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(performance.now());
+    }catch(e){lenis=null;}
+  }
+  function scrollTop(){ if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); else window.scrollTo(0,0); }
+  function scrollToEl(el,imm){ if(lenis) lenis.scrollTo(el,{offset:-80,immediate:!!imm,force:true,duration:1.4}); else el.scrollIntoView({behavior:imm?'auto':'smooth'}); }
+
+  /* ---------- split text into masked words, grouped by line ---------- */
+  function split(el){
+    var walk=function(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(n){
+        if(n.nodeType===3){
+          var parts=n.textContent.split(/(\s+)/), frag=document.createDocumentFragment();
+          parts.forEach(function(p){
+            if(!p) return;
+            if(/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(p)); return; }
+            var w=document.createElement('span'); w.className='w';
+            var wi=document.createElement('span'); wi.className='wi'; wi.textContent=p;
+            w.appendChild(wi); frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag,n);
+        } else if(n.nodeType===1 && !n.classList.contains('w')) walk(n);
+      });
+    };
+    walk(el);
+  }
+  function lineIndex(el){
+    var top=null,l=-1;
+    el.querySelectorAll('.w').forEach(function(w){
+      var t=w.offsetTop; if(top===null||Math.abs(t-top)>4){top=t;l++;}
+      w.firstChild.style.setProperty('--l',l);
+    });
+  }
+  document.querySelectorAll('h2, [data-split]').forEach(function(el){ el.setAttribute('data-split',''); split(el); });
+  function relines(){ document.querySelectorAll('[data-split]').forEach(lineIndex); }
+  relines();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(relines);
+  var rt; addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(relines,200); });
+
+  /* ---------- wrap images so they can be masked and drift ---------- */
+  document.querySelectorAll('.frame > img, .plate > img, .ch-cover > img, .photos figure > img, .portrait > img').forEach(function(img){
+    var s=document.createElement('span'); s.className='pic'; img.parentNode.insertBefore(s,img); s.appendChild(img);
+  });
+  document.querySelectorAll('.frame .pic img, .ch-cover .pic img').forEach(function(i){ i.setAttribute('data-par','0.06'); });
+
+  /* ---------- tag reveal targets, stagger siblings ---------- */
+  var textSel='.eyebrow,.lede,.note p,.note h3,.story,.glance,.facts,.best-head .btn,.clist,.cv-actions,.essay,.soon,.day,.ch-head .mono,.part-lede,.contact-block .muted,.i2-p,.copy-note';
+  document.querySelectorAll(textSel).forEach(function(el){ if(!el.closest('[data-reveal]')&&!el.hasAttribute('data-split')) el.setAttribute('data-reveal',''); });
+  document.querySelectorAll('.frame,.plate,.tile,.ch-card,.ch-cover,.photos figure,.portrait,.models figure').forEach(function(el){ el.setAttribute('data-rimg',''); });
+  document.querySelectorAll('.grid,.best,.photos,.chapters-index,.years,.glance').forEach(function(g){
+    var n=0; Array.prototype.forEach.call(g.children,function(c){
+      if(c.classList.contains('day')){n=0;return;}
+      if(c.hasAttribute('data-rimg')||c.hasAttribute('data-reveal')){ c.style.setProperty('--d',((n++)%4)*110+'ms'); }
+    });
+  });
+
+  /* ---------- typewriter for short mono labels ---------- */
+  function type(el,speed,done){
+    if(el.__typed) return; el.__typed=1;
+    var full=el.getAttribute('data-full')||el.textContent; el.setAttribute('data-full',full); el.setAttribute('aria-label',full);
+    if(reduce){ el.textContent=full; done&&done(); return; }
+    var i=0, caret=document.createElement('span'); caret.className='caret'; caret.setAttribute('aria-hidden','true');
+    el.textContent=''; var t=document.createTextNode(''); el.appendChild(t); el.appendChild(caret);
+    (function tick(){
+      t.textContent=full.slice(0,++i);
+      if(i<full.length) setTimeout(tick,speed+(Math.random()*speed*.9));
+      else setTimeout(function(){ caret.remove(); done&&done(); },900);
+    })();
+  }
+  var typeTargets=document.querySelectorAll('[data-type],.eyebrow,.num');
+  typeTargets.forEach(function(el){ el.setAttribute('data-full',el.textContent); el.setAttribute('aria-label',el.textContent); if(!reduce) el.style.minHeight='1.2em'; });
+
+  /* ---------- observer ---------- */
+  var io=null;
+  function startReveals(){
+    root.classList.add('ready');
+    if(reduce||!('IntersectionObserver' in window)){
+      document.querySelectorAll('[data-reveal],[data-rimg],[data-split]').forEach(function(e){e.classList.add('in');});
+      return;
+    }
+    var pending=Array.prototype.slice.call(document.querySelectorAll('[data-reveal],[data-rimg],[data-split],[data-type],.num,.eyebrow'));
+    function check(){
+      if(!pending.length) return;
+      var vh=innerHeight;
+      pending=pending.filter(function(el){
+        var r=el.getBoundingClientRect();
+        if(r.height===0&&r.width===0) return true;
+        if(r.top<vh*.92&&r.bottom>0){
+          el.classList.add('in');
+          if(el.matches('.eyebrow,.num,[data-type]')) type(el,34);
+          return false;
+        }
+        return true;
+      });
+    }
+    window.__check=check; check(); setInterval(check,400);
+  }
+  /* hide typed labels until they type */
+  if(!reduce) typeTargets.forEach(function(el){ el.textContent=''; });
+
+  /* ---------- loader ---------- */
+  var loader=document.getElementById('loader'), seen=false;
+  try{ seen=sessionStorage.getItem('oa-seen')==='1'; sessionStorage.setItem('oa-seen','1'); }catch(e){}
+  function hero(){ var h=document.querySelector('.hx'); if(h) h.classList.add('in'); }
+  if(reduce||seen||!loader){
+    if(loader) loader.remove(); hero(); startReveals();
+  } else {
+    if(lenis) lenis.stop();
+    var lt=document.getElementById('ldType'); lt.setAttribute('data-full','Architecture / Film & TV set design'); type(lt,28);
+    setTimeout(function(){
+      loader.classList.add('done'); hero(); startReveals(); if(lenis) lenis.start();
+      setTimeout(function(){ loader.remove(); },1200);
+    },1900);
+  }
+
+  /* ---------- routing with a curtain between pages ---------- */
   var views={home:1,architecture:1,photography:1,written:1};
-  var sub={"set-one":"year2","common-ground":"year2","light":"year2","offset":"year2","capoeira":"year1","graduation-station":"year1","alevels":"alevels","year1":"year1","year2":"year2","year3":"year3","contact":"home","kochi":"photography","elsewhere":"photography"};
-  function route(){
-    var h=(location.hash||'#home').slice(1), v=views[h]?h:(sub[h]?(views[sub[h]]?sub[h]:'architecture'):'home');
+  var sub={"set-one":"year2","common-ground":"year2","light":"year2","offset":"year2","capoeira":"year1","graduation-station":"year1","alevels":"alevels","year1":"year1","year2":"year2","year3":"year3","contact":"home","intro":"home","kochi":"photography","elsewhere":"photography"};
+  var current=null, curtain=document.getElementById('curtain');
+  function resolve(h){ return views[h]?h:(sub[h]?(views[sub[h]]?sub[h]:'architecture'):'home'); }
+  function show(h,v,imm){
     document.querySelectorAll('.view').forEach(function(el){el.hidden=el.getAttribute('data-view')!==v;});
     document.querySelectorAll('.top nav a').forEach(function(a){ if(a.getAttribute('href')==='#'+v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
     var target=null;
     if(!views[h]&&sub[h]){ var d=document.getElementById(sub[h]); if(d&&d.tagName==='DETAILS') d.open=true; target=document.getElementById(h); }
-    if(target){ requestAnimationFrame(function(){ target.scrollIntoView(); }); } else { window.scrollTo(0,0); }
+    if(lenis) lenis.resize();
+    if(target){ requestAnimationFrame(function(){ scrollToEl(target,imm); }); } else scrollTop();
+    current=v; if(top) header(true); setTimeout(function(){ if(window.__check) window.__check(); parallax(); },60);
   }
-  window.addEventListener('hashchange',route); route();
+  function route(){
+    var h=(location.hash||'#home').slice(1), v=resolve(h);
+    if(current===null||reduce||!curtain||v===current){ show(h,v,current!==v); return; }
+    curtain.animate([{transform:'translateY(101%)'},{transform:'translateY(0)'}],{duration:620,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'}).onfinish=function(){
+      show(h,v,true);
+      setTimeout(function(){ curtain.animate([{transform:'translateY(0)'},{transform:'translateY(-101%)'}],{duration:760,easing:'cubic-bezier(.76,0,.24,1)',fill:'forwards'}); },80);
+    };
+  }
+  addEventListener('hashchange',route); route();
 
+  /* ---------- smooth accordion ---------- */
+  document.querySelectorAll('.year > summary').forEach(function(s){
+    s.addEventListener('click',function(e){
+      if(reduce) return; e.preventDefault();
+      var d=s.parentNode, body=d.querySelector('.y-body'); if(!body||d.__anim) return;
+      var opening=!d.open;
+      if(opening) d.open=true;
+      var h=body.scrollHeight;
+      d.__anim=body.animate(opening?[{height:'0px',opacity:0},{height:h+'px',opacity:1}]:[{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:Math.min(1100,500+h/12),easing:'cubic-bezier(.76,0,.24,1)'});
+      d.__anim.onfinish=function(){ if(!opening) d.open=false; d.__anim=null; if(lenis) lenis.resize(); if(window.__check) window.__check(); };
+    });
+  });
+
+  /* ---------- scroll-driven: header, progress, parallax, marquee ---------- */
+  var top=document.querySelector('.top'), prog=document.querySelector('.prog'), lastY=0;
+  function header(force){
+    var y=window.scrollY, onHome=current==='home';
+    top.classList.toggle('solid',!onHome||y>window.innerHeight*.6);
+    if(!force) top.classList.toggle('hide',y>lastY&&y>240);
+    else top.classList.remove('hide');
+    var max=document.documentElement.scrollHeight-innerHeight; prog.style.setProperty('--p',max>0?Math.min(1,y/max):0);
+    lastY=y;
+  }
+  var pars=[];
+  if(!reduce) pars=Array.prototype.slice.call(document.querySelectorAll('[data-par]'));
+  function parallax(){
+    var vh=innerHeight;
+    pars.forEach(function(img){
+      var box=img.parentNode, r=box.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50||r.height===0) return;
+      var sp=parseFloat(img.getAttribute('data-par'));
+      if(img.closest('.hx')){ img.style.setProperty('--py',(window.scrollY*sp).toFixed(1)+'px'); return; }
+      var p=(r.top+r.height/2-vh/2)/(vh/2+r.height/2);
+      img.style.setProperty('--py',(-p*r.height*sp).toFixed(1)+'px');
+    });
+  }
+  var track=document.querySelector('.mq-track'), mq=null, rate=1;
+  if(track&&!reduce&&track.animate){ mq=track.animate([{transform:'translate3d(0,0,0)'},{transform:'translate3d(-50%,0,0)'}],{duration:48000,iterations:Infinity}); }
+  function onScroll(v){
+    header(false); parallax(); if(window.__check) window.__check();
+    if(mq){ var target=1+Math.min(Math.abs(v||0)*.35,5); rate+= (target*(v<0?-1:1)-rate)*.12; mq.playbackRate=rate; }
+  }
+  if(lenis) lenis.on('scroll',function(l){ onScroll(l.velocity); });
+  else addEventListener('scroll',function(){ onScroll(0); },{passive:true});
+  if(mq) (function ease(){ if(Math.abs(rate)>1.01||rate<0){ rate+=((rate<0?-1:1)-rate)*.04; mq.playbackRate=rate; } requestAnimationFrame(ease); })();
+  onScroll(0);
+
+  /* ---------- cursor + magnetic buttons ---------- */
+  if(fine&&!reduce){
+    var cur=document.createElement('div'); cur.className='cur hidden'; cur.setAttribute('aria-hidden','true');
+    cur.innerHTML='<div class="cur-ring"><span>View</span></div><div class="cur-dot"></div>';
+    document.body.appendChild(cur); root.classList.add('has-cur');
+    var ring=cur.firstChild, dot=cur.lastChild, mx=-100,my=-100,rx=-100,ry=-100;
+    addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; cur.classList.remove('hidden');
+      var t=e.target;
+      cur.classList.toggle('view',!!t.closest('figure[data-cap],.tile,.ch-card'));
+      cur.classList.toggle('link',!cur.classList.contains('view')&&!!t.closest('a,button,summary,[data-copy]'));
+    });
+    document.addEventListener('mouseleave',function(){cur.classList.add('hidden');});
+    (function loop(){ rx+=(mx-rx)*.16; ry+=(my-ry)*.16;
+      dot.style.transform='translate3d('+mx+'px,'+my+'px,0)'; ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+      requestAnimationFrame(loop); })();
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('mousemove',function(e){ var r=b.getBoundingClientRect(); b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'; });
+      b.addEventListener('mouseleave',function(){ b.style.transform=''; });
+    });
+  }
+
+  /* ---------- lightbox ---------- */
   var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),last=null;
-  function open(fig){ var i=fig.querySelector('img'); if(!i) return; last=fig; img.src=i.src; img.alt=i.alt; cap.textContent=fig.getAttribute('data-cap')||''; lb.hidden=false; document.getElementById('lbClose').focus(); }
-  function close(){ lb.hidden=true; img.src=''; if(last&&last.focus) last.focus(); }
+  function open(fig){ var i=fig.querySelector('img'); if(!i) return; last=fig; img.src=i.src; img.alt=i.alt; cap.textContent=fig.getAttribute('data-cap')||''; lb.hidden=false; if(lenis) lenis.stop(); document.getElementById('lbClose').focus(); }
+  function close(){ lb.hidden=true; img.src=''; if(lenis) lenis.start(); if(last&&last.focus) last.focus({preventScroll:true}); }
   document.querySelectorAll('figure[data-cap]').forEach(function(f){ f.tabIndex=0; f.addEventListener('click',function(){open(f)}); f.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();open(f);} }); });
   lb.addEventListener('click',function(e){ if(e.target!==img) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden) close(); });
+
+  /* ---------- copy buttons ---------- */
   document.querySelectorAll('.copy').forEach(function(b){
     b.addEventListener('click',function(){
       var el=document.getElementById(b.getAttribute('data-copy')), t=el.textContent.replace(/\s/g,b.getAttribute('data-copy')==='phone'?'':' ');
@@ -631,7 +1035,8 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
       try{ navigator.clipboard.writeText(t).then(function(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy'},1600); },sel); }catch(e){ sel(); }
     });
   });
-  // deter casual saving of images
+
+  /* ---------- deter casual saving of images ---------- */
   document.addEventListener('contextmenu',function(e){ if(e.target.closest('img,figure,.tile,.ch-card,.lb')) e.preventDefault(); });
   document.addEventListener('dragstart',function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
   document.querySelectorAll('img').forEach(function(i){ i.setAttribute('draggable','false'); });

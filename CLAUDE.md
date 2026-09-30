@@ -9,6 +9,7 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 ## Files
 - `index.html`: the whole site in one file (HTML, CSS, JS inline). Hash routing: `#home`, `#architecture`, `#photography`, `#written`, `#contact`. Project anchors (`#set-one`, `#capoeira`, `#common-ground`, `#light`, `#offset`, `#graduation-station`, `#kochi`) open the right view/year automatically (see `sub` map in the script).
 - `img/`: web-size JPGs, long edge about 1,600 to 1,800 px, quality about 78. Prefixes: `so-` Set One, `cg-` Common Ground, `cp-` Capoeira, `dc-` Digital Culture light studies, `ph-` photography, `me.jpg` portrait.
+- `js/lenis.min.js`: vendored Lenis smooth scroll (MIT, licence in `js/lenis-LICENSE`). No CDN dependency.
 - `.nojekyll`: keep it.
 
 ## Rules from Lando
@@ -23,6 +24,16 @@ Orlando (Lando) Adams's portfolio site. Final-year architecture student at Oxfor
 - Subtle film-grain overlay (`body::after`).
 - Renders shown as letterboxed "frames" with mono captions; drawings on white "plates".
 - Image protection: right-click and drag blocked on images, copyright line in footer and Photography page.
+
+## Motion and atmosphere (v2, Sept 2026)
+- Refs Lando gave: locomotive.ca, awwwards.com/sleutelaar, archifol.io portfolios. He loves organic, atmospheric design, film grain and typewriter text: subtle but appreciable to a graphic designer.
+- CSS layer is the `v2: motion, atmosphere, typewriter` block at the end of the `<style>`.
+- Loader (once per session), page curtain between views, Lenis smooth scroll, fixed header that hides on scroll down, amber scroll progress line.
+- Full-screen hero (so-aerial.jpg) with drifting mist, parallax and a faint projector flicker. Marquee reacts to scroll speed and direction.
+- Reveals: `[data-reveal]` fade up, `[data-rimg]` image mask wipe, `[data-split]` word-by-line rise (all h2 auto-split). Eyebrows, `.num` and `[data-type]` type on like a typewriter with an amber caret. Courier text has a faint ink bleed (text-shadow).
+- Animated grain, vignette and slow drifting light behind content. Custom cursor ("View" over images) and magnetic buttons on mouse devices only.
+- Everything switches off under prefers-reduced-motion; a 6 s fallback shows all content if JS fails.
+- Reveals use viewport checks, not IntersectionObserver (clip-path hid targets from IO in Chrome).
 
 ## Structure
 - Home: portrait, intro, at-a-glance strip, 6 best-work tiles, Request CV (WhatsApp button + copyable phone/email).
